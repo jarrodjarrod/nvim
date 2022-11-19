@@ -7,7 +7,12 @@ function ColorMyPencils()
     vim.g.gruvbox_invert_selection = '0'
     vim.opt.background = "dark"
 
-    vim.cmd("colorscheme " .. vim.g.jazzimoto_colorscheme)
+    local status_ok, _ = pcall(vim.cmd, "colorscheme " .. vim.g.jazzimoto_colorscheme) 
+
+    if not status_ok then 
+      vim.notify("colorscheme " .. vim.g.jazzimoto_colorscheme .. " not found!")
+      return
+    end
 
     local hl = function(thing, opts)
         vim.api.nvim_set_hl(0, thing, opts)
@@ -39,4 +44,5 @@ function ColorMyPencils()
     })
 
 end
+
 ColorMyPencils()
