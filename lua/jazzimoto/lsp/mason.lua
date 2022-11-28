@@ -1,6 +1,5 @@
 local servers = {
   "cssls",
-  "eslint",
   "html",
   "jsonls",
   "sumneko_lua",

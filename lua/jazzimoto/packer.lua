@@ -32,14 +32,13 @@ packer.init({
 })
 
 return packer.startup(function(use)
-
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/popup.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("wbthomason/packer.nvim")
 
-  -- LSP
+	-- LSP
 	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 	use("williamboman/mason-lspconfig.nvim")
 	use("williamboman/mason.nvim")
@@ -57,6 +56,8 @@ return packer.startup(function(use)
 
 	use("folke/tokyonight.nvim")
 	use("rigellute/shades-of-purple.vim")
+	use("gruvbox-community/gruvbox")
+  use("mbbill/undotree")
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -65,6 +66,8 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	})
+	use("nvim-treesitter/nvim-treesitter-context")
+	require("treesitter-context").setup()
 
 	use({
 		"folke/trouble.nvim",
@@ -73,6 +76,8 @@ return packer.startup(function(use)
 			require("trouble").setup()
 		end,
 	})
+
+	use("github/copilot.vim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
