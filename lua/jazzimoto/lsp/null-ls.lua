@@ -10,19 +10,19 @@ local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
 -- hover sources
--- local hover = null_ls.builtins.hover
+local hover = null_ls.builtins.hover
 
 -- completion sources
--- local completion = null_ls.builtins.completion
+local completion = null_ls.builtins.completion
 
 null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.eslint,
-		formatting.stylua,
-    --code_actions.cspell,
-    code_actions.eslint,
-    --diagnostics.cspell,
-    diagnostics.eslint,
+    formatting.stylua,
+		-- code_actions.cspell,
+		-- code_actions.eslint,
+		-- diagnostics.cspell,
+		-- diagnostics.eslint,
 	},
 })

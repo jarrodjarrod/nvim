@@ -2,45 +2,29 @@ local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local nnoremap = require("jazzimoto.keymap").nnoremap
 
-nnoremap("<C-p>", function()
-	builtin.find_files()
-end)
+nnoremap("<C-p>", builtin.find_files)
 
-nnoremap("<leader>pl", function()
-	builtin.live_grep()
-end)
+nnoremap("<leader>pl", builtin.live_grep)
 
 nnoremap("<leader>ps", function()
 	builtin.grep_string({ search = vim.fn.input("Grep for > ") })
 end)
 
-nnoremap("<Leader>pf", function()
-	builtin.git_files()
-end)
+nnoremap("<Leader>pf", builtin.git_files)
 
 nnoremap("<leader>pw", function()
 	builtin.grep_string({ search = vim.fn.expand("<cword>") })
 end)
 
-nnoremap("<leader>pb", function()
-	builtin.buffers()
-end)
+nnoremap("<leader>pb", builtin.buffers)
 
-nnoremap("<leader>vh", function()
-	builtin.help_tags()
-end)
+nnoremap("<leader>vh", builtin.help_tags)
 
-nnoremap("<leader>pt", function()
-	builtin.git_status()
-end)
+nnoremap("<leader>pt", builtin.git_status)
 
-nnoremap("<leader>pc", function()
-	builtin.git_commits()
-end)
+nnoremap("<leader>pc", builtin.git_commits)
 
-nnoremap("<leader>pg", function()
-	builtin.git_branches()
-end)
+nnoremap("<leader>pg", builtin.git_branches)
 
 --[[
 nnoremap("<leader>vrc", function()

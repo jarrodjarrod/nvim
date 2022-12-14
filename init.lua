@@ -1,8 +1,5 @@
-require "jazzimoto"
-
 if vim.g.vscode then
-    -- VSCode extension
+    require("vsvim")
 else
-    -- ordinary Neovim
+    require("jazzimoto")
 end
-

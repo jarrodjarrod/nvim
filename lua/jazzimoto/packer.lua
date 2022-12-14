@@ -39,18 +39,16 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- LSP
-	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-	use("williamboman/mason-lspconfig.nvim")
 	use("williamboman/mason.nvim")
-
+	use("williamboman/mason-lspconfig.nvim")
+	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/cmp-nvim-lsp") -- LSP source for nvim-cmp
-	use("hrsh7th/cmp-nvim-lua") -- LSP source for nvim-cmp
+	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 	use("rafamadriz/friendly-snippets")
-
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 
@@ -58,6 +56,10 @@ return packer.startup(function(use)
 	use("rigellute/shades-of-purple.vim")
 	use("gruvbox-community/gruvbox")
   use("mbbill/undotree")
+	use("nvim-treesitter/nvim-treesitter-context")
+	use("github/copilot.vim")
+  use("ThePrimeagen/vim-be-good")
+  use("kdheepak/lazygit.nvim")
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -66,9 +68,6 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	})
-	use("nvim-treesitter/nvim-treesitter-context")
-	require("treesitter-context").setup()
-
 	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
@@ -77,7 +76,6 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use("github/copilot.vim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
