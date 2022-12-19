@@ -18,11 +18,9 @@ nnoremap("J", "mzJ`z")
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 
--- greatest remap ever
 xnoremap("<leader>p", '"_dP')
--- next greatest remap ever : asbjornHaland
 nnoremap("<leader>y", '"+y')
-nmap("<leader>Y", '"+Y')
+nnoremap("<leader>Y", '"+Y')
 vnoremap("<leader>d", '"_d')
 
 nnoremap("<leader>o", 'o<Esc>0"_D')

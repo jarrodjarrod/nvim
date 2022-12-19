@@ -2,19 +2,19 @@ local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local nnoremap = require("jazzimoto.keymap").nnoremap
 
-nnoremap("<C-p>", builtin.find_files)
-
-nnoremap("<leader>pl", builtin.live_grep)
+nnoremap("<C-p>", builtin.git_files)
 
 nnoremap("<leader>ps", function()
 	builtin.grep_string({ search = vim.fn.input("Grep for > ") })
 end)
 
-nnoremap("<Leader>pf", builtin.git_files)
-
 nnoremap("<leader>pw", function()
 	builtin.grep_string({ search = vim.fn.expand("<cword>") })
 end)
+
+nnoremap("<leader>pl", builtin.live_grep)
+
+nnoremap("<Leader>pf", builtin.find_files)
 
 nnoremap("<leader>pb", builtin.buffers)
 
@@ -67,7 +67,6 @@ require("telescope").setup({
 			i = {
 				["<c-j>"] = actions.move_selection_next,
 				["<c-k>"] = actions.move_selection_previous,
-
 				["<s-up>"] = actions.cycle_history_prev,
 				["<s-down>"] = actions.cycle_history_next,
 			},

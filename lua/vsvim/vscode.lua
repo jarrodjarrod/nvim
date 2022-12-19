@@ -1,5 +1,5 @@
-local Remap = require("vsvim.keymap")
-local nnoremap = Remap.nnoremap
+local nnoremap = require("vsvim.keymap").nnoremap
 
-nnoremap("<leader>vf", ":call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>")
-
+nnoremap("<leader>wf", ":call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>")
+nnoremap("<C-P>", ":call VSCodeNotify('workbench.action.quickOpen', 1)<CR>")
+nnoremap("gr", ":call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>")
