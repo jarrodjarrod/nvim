@@ -17,7 +17,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:2"
 vim.opt.isfname:append("@-@")
 -- Give more space for displaying messages.
 vim.opt.cmdheight = 1

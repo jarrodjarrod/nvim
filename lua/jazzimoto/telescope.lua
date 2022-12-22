@@ -5,11 +5,11 @@ local nnoremap = require("jazzimoto.keymap").nnoremap
 nnoremap("<C-p>", builtin.git_files)
 
 nnoremap("<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep for > ") })
+  builtin.grep_string({ search = vim.fn.input("Grep for > ") })
 end)
 
 nnoremap("<leader>pw", function()
-	builtin.grep_string({ search = vim.fn.expand("<cword>") })
+  builtin.grep_string({ search = vim.fn.expand("<cword>") })
 end)
 
 nnoremap("<leader>pl", builtin.live_grep)
@@ -18,13 +18,17 @@ nnoremap("<Leader>pf", builtin.find_files)
 
 nnoremap("<leader>pb", builtin.buffers)
 
-nnoremap("<leader>vh", builtin.help_tags)
-
 nnoremap("<leader>pt", builtin.git_status)
 
 nnoremap("<leader>pc", builtin.git_commits)
 
 nnoremap("<leader>pg", builtin.git_branches)
+
+nnoremap("<leader>ph", builtin.oldfiles)
+
+nnoremap("<leader>vh", builtin.help_tags, { desc = '[V]im [H]elp' })
+
+nnoremap('<leader><space>', builtin.current_buffer_fuzzy_find, { desc = 'Fuzzily search in current buffer]' })
 
 --[[
 nnoremap("<leader>vrc", function()
@@ -57,33 +61,33 @@ end)
 --]]
 
 require("telescope").setup({
-	defaults = {
-		layout_config = {
-			horizontal = { width = 0.9 },
-			preview_width = 0.4,
-			-- other layout configuration here
-		},
-		mappings = {
-			i = {
-				["<c-j>"] = actions.move_selection_next,
-				["<c-k>"] = actions.move_selection_previous,
-				["<s-up>"] = actions.cycle_history_prev,
-				["<s-down>"] = actions.cycle_history_next,
-			},
-		},
-		-- other defaults configuration here
-	},
-	pickers = {
-		find_files = {
-			hidden = true,
-			find_command = {
-				"rg",
-				"--files",
-				"--color",
-				"never",
-				"--ignore-file",
-			},
-		},
-	},
-	-- other configuration values here
+  defaults = {
+    layout_config = {
+      horizontal = { width = 0.9 },
+      preview_width = 0.4,
+      -- other layout configuration here
+    },
+    mappings = {
+      i = {
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
+        ["<s-up>"] = actions.cycle_history_prev,
+        ["<s-down>"] = actions.cycle_history_next,
+      },
+    },
+    -- other defaults configuration here
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+      find_command = {
+        "rg",
+        "--files",
+        "--color",
+        "never",
+        "--ignore-file",
+      },
+    },
+  },
+  -- other configuration values here
 })

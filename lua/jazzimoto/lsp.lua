@@ -1,5 +1,6 @@
 local nnoremap = require("jazzimoto.keymap").nnoremap
 local inoremap = require("jazzimoto.keymap").inoremap
+
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
@@ -51,14 +52,17 @@ lsp.set_preferences({
   }
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr }
 
   inoremap("<C-h>", vim.lsp.buf.signature_help, opts)
-  nnoremap("<leader>lca", vim.lsp.buf.code_action, opts)
+  nnoremap("<leader>lc", vim.lsp.buf.code_action, opts)
   nnoremap("<leader>lf", vim.lsp.buf.format, opts)
   nnoremap("<leader>lr", vim.lsp.buf.rename, opts)
-  nnoremap("<leader>lws", vim.lsp.buf.workspace_symbol, opts)
+
+  nnoremap("<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+
+
   nnoremap("K", vim.lsp.buf.hover, opts)
   nnoremap("[d", vim.diagnostic.goto_prev, opts)
   nnoremap("]d", vim.diagnostic.goto_next, opts)
@@ -71,6 +75,4 @@ end)
 
 lsp.setup()
 
-vim.diagnostic.config({
-  virtual_text = true,
-})
+vim.diagnostic.config({ virtual_text = true })
