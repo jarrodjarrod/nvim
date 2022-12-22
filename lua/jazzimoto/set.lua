@@ -39,3 +39,5 @@ vim.opt.splitright = true -- force all vertical splits to go to the right of cur
 
 vim.opt.swapfile = false
 vim.opt.backup = false
+
+vim.diagnostic.config({ virtual_text = true })
