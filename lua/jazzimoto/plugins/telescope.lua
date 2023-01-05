@@ -1,19 +1,18 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   --  cmd = { "Telescope" },
-
+  tag = "0.1.0",
   dependencies = {
     { "nvim-telescope/telescope-file-browser.nvim" },
     { "nvim-telescope/telescope-z.nvim" },
-    -- { "nvim-telescope/telescope-project.nvim" },
     { "nvim-telescope/telescope-symbols.nvim" },
+    -- { "nvim-telescope/telescope-project.nvim" },
     -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
 }
 
 function M.config()
   local actions = require("telescope.actions")
-
 
   require("telescope").setup({
     defaults = {

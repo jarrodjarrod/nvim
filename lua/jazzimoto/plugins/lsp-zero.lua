@@ -85,11 +85,13 @@ function M.config()
     ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
     ["<C-y>"] = cmp.mapping.confirm({ select = true }),
     ["<C-i>"] = cmp.mapping.complete(),
+    ["<Tab>"] = cmp.config.disable,
+    ["<S-Tab>"] = cmp.config.disable,
   })
 
-  -- disable completion with tab for better copilot setup
-  cmp_mappings["<Tab>"] = nil
-  cmp_mappings["<S-Tab>"] = nil
+  lsp.setup_nvim_cmp({
+    mapping = cmp_mappings
+  })
 
   lsp.setup()
 end

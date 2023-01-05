@@ -13,8 +13,6 @@ vim.opt.runtimepath:prepend(lazypath)
 
 
 require("lazy").setup("jazzimoto.plugins", {
-  defaults = { lazy = false },
-  install = { colorscheme = { "tokyonight", "habamax", "rose-pine" } },
+  install = { colorscheme = { "rose-pine", "habamax", "tokyonight" } },
   checker = { enabled = true },
-  debug = true,
 })
