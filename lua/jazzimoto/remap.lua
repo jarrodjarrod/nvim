@@ -13,7 +13,7 @@ nnoremap("<leader>ll", "a<Space><Esc>")
 nnoremap("<leader>hh", "i<Space><Esc>")
 nnoremap("<leader>o", 'o<Esc>0"_D')
 nnoremap("<leader>O", 'O<Esc>0"_D')
-inoremap("jj", "<Esc>")
+inoremap("<c-c>", "<nop>")
 
 nnoremap("<leader>e", vim.cmd.Ex)
 
@@ -33,8 +33,6 @@ nnoremap("<leader>Y", '"+Y')
 nnoremap("<leader>d", '"_d')
 vnoremap("<leader>d", '"_d')
 
-inoremap("<C-Space>", "<Esc>")
-
 nnoremap("Q", "<nop>")
 nnoremap("<C-k>", "<cmd>cnext<CR>zz")
 nnoremap("<C-j>", "<cmd>cprev<CR>zz")
@@ -44,5 +42,17 @@ nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 
 nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
+-- Move to window using the movement keys
+nnoremap("<left>", "<C-w>h")
+nnoremap("<down>", "<C-w>j")
+nnoremap("<up>", "<C-w>k")
+nnoremap("<right>", "<C-w>l")
+
 -- I know what this does but I don't understand how it's useful yet
 -- nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- qflist
+nnoremap("<leader>q", ":copen<CR>")
+nnoremap("]q", ":cnext<CR>")
+nnoremap("[q", ":cprev<CR>")

@@ -6,6 +6,7 @@ local M = {
     { "nvim-telescope/telescope-file-browser.nvim" },
     { "nvim-telescope/telescope-z.nvim" },
     { "nvim-telescope/telescope-symbols.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     -- { "nvim-telescope/telescope-project.nvim" },
     -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
@@ -13,6 +14,7 @@ local M = {
 
 function M.config()
   local actions = require("telescope.actions")
+  local lga_actions = require("telescope-live-grep-args.actions")
 
   require("telescope").setup({
     defaults = {
@@ -43,8 +45,21 @@ function M.config()
         },
       },
     },
-    -- other configuration values here
+    extensions = {
+      live_grep_args = {
+        auto_quoting = true, -- enable/disable auto-quoting
+        -- define mappings, e.g.
+        mappings = { -- extend mappings
+          i = {
+            ["<c-k>"] = lga_actions.quote_prompt(),
+            ["<c-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+          },
+        },
+      }
+    }
   })
+  require("telescope").load_extension("file_browser")
+  require("telescope").load_extension("live_grep_args")
 end
 
 function M.init()
@@ -79,7 +94,11 @@ function M.init()
 
   nnoremap('<leader><space>', builtin.current_buffer_fuzzy_find, { desc = 'Fuzzily search in current buffer]' })
 
-  vim.keymap.set("n", "<leader>pz", function()
+  nnoremap("<leader>pa", function()
+    telescope.extensions.live_grep_args.live_grep_args()
+  end)
+
+  nnoremap("<leader>pz", function()
     telescope.extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } })
   end, { desc = "Find Zoxide" })
 

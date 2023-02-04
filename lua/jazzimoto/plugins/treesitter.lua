@@ -9,7 +9,14 @@ local M = {
     "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-refactor",
     "mfussenegger/nvim-treehopper",
+    "windwp/nvim-ts-autotag",
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+      end
+    end,
   },
 }
 
@@ -36,6 +43,7 @@ function M.config()
       "http",
       "javascript",
       "jsdoc",
+      "json",
       "jsonc",
       "lua",
       "markdown",
@@ -53,7 +61,6 @@ function M.config()
       "vim",
       "vue",
       "yaml",
-      "json",
     },
     sync_install = false,
     auto_install = false,
@@ -61,7 +68,7 @@ function M.config()
     indent = { enable = false },
     context_commentstring = { enable = true, enable_autocmd = false },
     incremental_selection = {
-      enable = false,
+      enable = true,
       keymaps = {
         init_selection = "<c-n>",
         node_incremental = "<c-n>",
@@ -119,7 +126,7 @@ function M.config()
     },
     textobjects = {
       select = {
-        enable = false,
+        enable = true,
         lookahead = true,
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
@@ -130,20 +137,32 @@ function M.config()
         },
       },
       move = {
-        enable = false,
+        enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-        goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-        goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-        goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+        goto_next_start = {
+          [']f'] = '@function.outer',
+          [']c'] = '@class.outer',
+        },
+        goto_next_end = {
+          [']F'] = '@function.outer',
+          [']C'] = '@class.outer',
+        },
+        goto_previous_start = {
+          ['[f'] = '@function.outer',
+          ['[c'] = '@class.outer',
+        },
+        goto_previous_end = {
+          ['[F'] = '@function.outer',
+          ['[C'] = '@class.outer',
+        },
       },
       swap = {
         enable = true,
         swap_next = {
-          ['<leader>a'] = '@parameter.inner',
+          ['<leader>ta'] = '@parameter.inner',
         },
         swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
+          ['<leader>tA'] = '@parameter.inner',
         },
       },
       lsp_interop = {
@@ -152,6 +171,9 @@ function M.config()
           ["gD"] = "@function.outer",
         },
       },
+    },
+    autotag = {
+      enable = true,
     },
   })
   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()

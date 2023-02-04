@@ -14,21 +14,33 @@ return {
   "nvim-treesitter/nvim-treesitter-context",
   "ThePrimeagen/vim-be-good",
   "folke/zen-mode.nvim",
-  "folke/tokyonight.nvim",
   "rose-pine/neovim",
   "lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank lines
   "github/copilot.vim",
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  "kdheepak/lazygit.nvim",
   {
-    "lewis6991/gitsigns.nvim",
-    config = true,
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd [[colorscheme tokyonight-moon]]
+    end
   },
   {
-    "numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
-    config = true,
+    "ThePrimeagen/harpoon",
+    init = function()
+      vim.keymap.set("n", "<leader>a", require("harpoon.mark").add_file)
+      vim.keymap.set("n", "<c-e>", require("harpoon.ui").toggle_quick_menu)
+      vim.keymap.set("n", "<leader>1", function() require("harpoon.ui").nav_file(1) end)
+      vim.keymap.set("n", "<leader>2", function() require("harpoon.ui").nav_file(2) end)
+      vim.keymap.set("n", "<leader>3", function() require("harpoon.ui").nav_file(3) end)
+      vim.keymap.set("n", "<leader>4", function() require("harpoon.ui").nav_file(4) end)
+    end
   },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = true,
-  },
+  { "windwp/nvim-autopairs", config = true },
+  { "lewis6991/gitsigns.nvim", config = true, },
+  { "numToStr/Comment.nvim", config = true, },
+  { "nvim-treesitter/nvim-treesitter-context", config = true, },
+  { "jose-elias-alvarez/typescript.nvim", config = true },
 }

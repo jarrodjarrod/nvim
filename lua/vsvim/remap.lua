@@ -9,7 +9,6 @@ nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
 vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
-nnoremap("<C-p>", ":call VSCodeNotify('workbench.action.quickOpen', 1)<CR>")
 
 nnoremap("<leader>u", ":UndotreeShow<CR>")
 
@@ -34,3 +33,4 @@ nnoremap("gr", ":call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>"
 vim.keymap.set({ 'n', 'v', 'i' }, "<leader>e", ":call VSCodeCall('workbench.view.explorer')<CR>", {
   noremap = true
 })
+nnoremap("<C-p>", ":call VSCodeCall('workbench.action.quickOpen')<CR>")
