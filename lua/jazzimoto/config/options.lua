@@ -1,0 +1,37 @@
+vim.diagnostic.config({ virtual_text = true })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+vim.opt.backup = false
+vim.opt.backup = false
+vim.opt.cmdheight = 1
+vim.opt.colorcolumn = "100"
+vim.opt.errorbells = false
+vim.opt.expandtab = true
+vim.opt.guifont = "MonoLisa:h14"
+vim.opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.opt.isfname:append("@-@")
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 8
+vim.opt.shiftwidth = 2
+vim.opt.shortmess:append("c")
+vim.opt.signcolumn = "yes"
+vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.smartindent = true -- make indenting smarter again
+vim.opt.softtabstop = 2
+vim.opt.splitbelow = true -- force all horizontal splits to go below current window
+vim.opt.splitright = true -- force all vertical splits to go to the right of current window
+vim.opt.swapfile = false
+vim.opt.swapfile = false
+vim.opt.tabstop = 2
+vim.opt.termguicolors = true
+vim.opt.termguicolors = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.updatetime = 50
+vim.opt.wrap = false

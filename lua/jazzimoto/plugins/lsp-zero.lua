@@ -1,6 +1,3 @@
-local nnoremap = require("jazzimoto.keymap").nnoremap
-local inoremap = require("jazzimoto.keymap").inoremap
-
 local M = {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v1.x',
@@ -60,19 +57,19 @@ function M.config()
 
   lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr }
-    inoremap("<C-h>", vim.lsp.buf.signature_help, opts)
-    nnoremap("<leader>lc", vim.lsp.buf.code_action, opts)
-    nnoremap("<leader>lf", vim.lsp.buf.format, opts)
-    nnoremap("<leader>lr", vim.lsp.buf.rename, opts)
-    nnoremap("<leader>ws", vim.lsp.buf.workspace_symbol, opts)
-    nnoremap("K", vim.lsp.buf.hover, opts)
-    nnoremap("[d", vim.diagnostic.goto_prev, opts)
-    nnoremap("]d", vim.diagnostic.goto_next, opts)
-    nnoremap("gD", vim.lsp.buf.declaration, opts)
-    nnoremap("gI", vim.lsp.buf.implementation, opts)
-    nnoremap("gd", vim.lsp.buf.definition, opts)
-    nnoremap("gl", vim.diagnostic.open_float, opts)
-    nnoremap("gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
+    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   end)
 
   local cmp = require('cmp')
