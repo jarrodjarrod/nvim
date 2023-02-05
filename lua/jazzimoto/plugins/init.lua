@@ -21,11 +21,12 @@ return {
   "kdheepak/lazygit.nvim",
   {
     "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
     config = function()
       vim.cmd [[colorscheme tokyonight-moon]]
-    end
+    end,
+    lazy = false,
+    opts = { style = "moon" },
+    priority = 1000,
   },
   {
     "ThePrimeagen/harpoon",
