@@ -1,6 +1,5 @@
 return {
   -- "b0o/SchemaStore.nvim",
-  -- "jose-elias-alvarez/typescript.nvim",
   "folke/neodev.nvim",
   -- "MunifTanjim/nui.nvim",
   "williamboman/mason-lspconfig.nvim",

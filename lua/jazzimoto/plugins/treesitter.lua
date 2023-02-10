@@ -5,10 +5,10 @@ local M = {
   event = "BufReadPost",
 
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-textsubjects",
-    "nvim-treesitter/nvim-treesitter-refactor",
     "mfussenegger/nvim-treehopper",
+    "nvim-treesitter/nvim-treesitter-refactor",
+    "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
@@ -84,13 +84,13 @@ function M.config()
         },
       },
       navigation = {
-        enable = true,
+        enable = false,
         keymaps = {
-          -- goto_definition = "gd",
-          -- list_definitions = "gnD",
-          -- list_definitions_toc = "gO",
-          -- goto_next_usage = "<a-*>",
-          -- goto_previous_usage = "<a-#>",
+          goto_definition = "gd",
+          list_definitions = "gnD",
+          list_definitions_toc = "gO",
+          goto_next_usage = "<a-*>",
+          goto_previous_usage = "<a-#>",
         },
       },
     },
@@ -100,7 +100,7 @@ function M.config()
       lint_events = { "BufWrite", "CursorHold" },
     },
     textsubjects = {
-      enable = true,
+      enable = false,
       keymaps = {
         ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",
@@ -157,7 +157,7 @@ function M.config()
         },
       },
       swap = {
-        enable = true,
+        enable = false,
         swap_next = {
           ['<leader>ta'] = '@parameter.inner',
         },
@@ -176,6 +176,7 @@ function M.config()
       enable = true,
     },
   })
+
   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
   parser_config.markdown.filetype_to_parsername = "octo"
 end

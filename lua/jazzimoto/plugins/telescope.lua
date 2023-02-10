@@ -16,34 +16,28 @@ return {
     local extensions = telescope.extensions
 
     return {
+      { "<C-p>", "<cmd>Telescope git_files<cr>" },
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live Grep"},
+      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
       { "<leader>?", "<cmd>Telescope grep_string<cr>", desc = "Grep String" },
       { "<leader>;", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      -- find
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
-      { "<C-p>", "<cmd>Telescope git_files<cr>" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-      { "<leader>fa", function() telescope.extensions.live_grep_args.live_grep_args() end },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>" },
+      -- find
+      { "<leader>fa", extensions.live_grep_args.live_grep_args },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>fc", "<cmd>Telescope git_commits<cr>" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>" },
       { "<leader>fg", "<cmd>Telescope git_branches<cr>" },
       { "<leader>fh", "<cmd>Telescope oldfiles<cr>" },
       { "<leader>fl", "<cmd>Telescope live_grep<cr>" },
+      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       { "<leader>fs", function() builtin.grep_string({ search = vim.fn.input("Grep for > ") }) end },
       { "<leader>fw", function() builtin.grep_string({ search = vim.fn.expand("<cword>") }) end },
-      { "<leader>fz",
-        function()
-          extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } })
-        end,
-        { desc = "Find Zoxide" }
-      },
+      { "<leader>fz", function() extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } }) end,
+        { desc = "[F]ind [Z]oxide" } },
       { "<leader>vh", "<cmd>Telescope help_tags<cr>", { desc = '[V]im [H]elp' } },
-      { "<leader><space>", builtin.current_buffer_fuzzy_find, { desc = 'Fuzzily search in current buffer' } },
       -- search
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
@@ -95,8 +89,8 @@ return {
           auto_quoting = true, -- enable/disable auto-quoting
           mappings = {
             i = {
-              ["<c-k>"] = lga_actions.quote_prompt(),
-              ["<c-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              ["<c-q"] = lga_actions.quote_prompt(),
+              ["<tab>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
             },
           },
         }

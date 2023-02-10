@@ -10,7 +10,7 @@ local M = {
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' }, -- Required
-   { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+    { 'hrsh7th/cmp-nvim-lsp' }, -- Required
     { 'hrsh7th/cmp-buffer' }, -- Optional
     { 'hrsh7th/cmp-path' }, -- Optional
     { 'saadparwaiz1/cmp_luasnip' }, -- Optional
@@ -19,7 +19,8 @@ local M = {
     -- Snippets
     { 'L3MON4D3/LuaSnip' }, -- Required
     { 'rafamadriz/friendly-snippets' }, -- Optional
-  }
+    { "jose-elias-alvarez/typescript.nvim" },
+  },
 }
 
 function M.config()
@@ -89,7 +90,14 @@ function M.config()
     mapping = cmp_mappings
   })
 
+  lsp.skip_server_setup({ 'tsserver' })
+
   lsp.setup()
+
+  require('typescript').setup({
+    debug = false,
+    server = lsp.build_options('tsserver', {})
+  })
 end
 
 return M
