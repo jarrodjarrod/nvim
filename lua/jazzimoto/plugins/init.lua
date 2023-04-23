@@ -1,12 +1,4 @@
 return {
-  -- "b0o/SchemaStore.nvim",
-  "folke/neodev.nvim",
-  -- "MunifTanjim/nui.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  -- "windwp/nvim-spectre",
-  -- "rlch/github-notifications.nvim",
-  -- "folke/twilight.nvim",
-  -- "folke/which-key.nvim",
   "nvim-lua/plenary.nvim",
   "nvim-lua/popup.nvim",
   "mbbill/undotree",
@@ -15,8 +7,15 @@ return {
   "folke/zen-mode.nvim",
   "rose-pine/neovim",
   "lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank lines
-  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-sleuth",                    -- Detect tabstop and shiftwidth automatically
   "kdheepak/lazygit.nvim",
+
+  { "jose-elias-alvarez/typescript.nvim",      opts = {}, },
+  { "windwp/nvim-autopairs",                   opts = {}, },
+  { "lewis6991/gitsigns.nvim",                 opts = {}, },
+  { "numToStr/Comment.nvim",                   opts = {}, },
+  { "nvim-treesitter/nvim-treesitter-context", opts = {}, },
+
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
@@ -26,15 +25,17 @@ return {
       return vim.fn.executable 'make' == 1
     end,
   },
+
   {
     "folke/tokyonight.nvim",
-    config = function()
+    init = function()
       vim.cmd [[colorscheme tokyonight-moon]]
     end,
     lazy = false,
     opts = { style = "moon" },
     priority = 1000,
   },
+
   {
     "ThePrimeagen/harpoon",
     init = (function()
@@ -52,9 +53,11 @@ return {
     end),
     opts = { menu = { width = vim.api.nvim_win_get_width(0) - 4, } }
   },
-  { "windwp/nvim-autopairs",                   config = true },
-  { "lewis6991/gitsigns.nvim",                 config = true, },
-  { "numToStr/Comment.nvim",                   config = true, },
-  { "nvim-treesitter/nvim-treesitter-context", config = true, },
-  { "jose-elias-alvarez/typescript.nvim",      config = true },
+
+  -- "b0o/SchemaStore.nvim",
+  -- "MunifTanjim/nui.nvim",
+  -- "windwp/nvim-spectre",
+  -- "rlch/github-notifications.nvim",
+  -- "folke/twilight.nvim",
+  -- "folke/which-key.nvim",
 }

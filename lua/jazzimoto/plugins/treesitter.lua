@@ -3,7 +3,6 @@ local M = {
   dev = false,
   build = ":TSUpdate",
   event = "BufReadPost",
-
   dependencies = {
     "RRethy/nvim-treesitter-textsubjects",
     "mfussenegger/nvim-treehopper",
@@ -11,8 +10,7 @@ local M = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
-
-    opts = function(_, opts)
+    opts = function (_, opts)
       if type(opts.ensure_installed) == "table" then
         vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
       end
@@ -21,14 +19,14 @@ local M = {
 }
 
 function M.init()
-  vim.cmd([[
+  vim.cmd[[
     omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
     xnoremap <silent> m :lua require('tsht').nodes()<CR>
-  ]])
+  ]]
 end
 
 function M.config()
-  require("nvim-treesitter.configs").setup({
+  require"nvim-treesitter.configs".setup{
     ensure_installed = {
       "bash",
       "c",
@@ -84,7 +82,7 @@ function M.config()
         },
       },
       navigation = {
-        enable = false,
+        enable = true,
         keymaps = {
           goto_definition = "gd",
           list_definitions = "gnD",
@@ -100,7 +98,7 @@ function M.config()
       lint_events = { "BufWrite", "CursorHold" },
     },
     textsubjects = {
-      enable = false,
+      enable = true,
       keymaps = {
         ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",
@@ -109,7 +107,7 @@ function M.config()
     playground = {
       enable = true,
       disable = {},
-      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+      updatetime = 25,        -- Debounced time for highlighting nodes in the playground from source code
       persist_queries = true, -- Whether the query persists across vim sessions
       keybindings = {
         toggle_query_editor = "o",
@@ -140,29 +138,29 @@ function M.config()
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          [']f'] = '@function.outer',
-          [']c'] = '@class.outer',
+          ["]f"] = "@function.outer",
+          ["]c"] = "@class.outer",
         },
         goto_next_end = {
-          [']F'] = '@function.outer',
-          [']C'] = '@class.outer',
+          ["]F"] = "@function.outer",
+          ["]C"] = "@class.outer",
         },
         goto_previous_start = {
-          ['[f'] = '@function.outer',
-          ['[c'] = '@class.outer',
+          ["[f"] = "@function.outer",
+          ["[c"] = "@class.outer",
         },
         goto_previous_end = {
-          ['[F'] = '@function.outer',
-          ['[C'] = '@class.outer',
+          ["[F"] = "@function.outer",
+          ["[C"] = "@class.outer",
         },
       },
       swap = {
         enable = false,
         swap_next = {
-          ['<leader>ta'] = '@parameter.inner',
+          ["<leader>ta"] = "@parameter.inner",
         },
         swap_previous = {
-          ['<leader>tA'] = '@parameter.inner',
+          ["<leader>tA"] = "@parameter.inner",
         },
       },
       lsp_interop = {
@@ -175,9 +173,9 @@ function M.config()
     autotag = {
       enable = true,
     },
-  })
+  }
 
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  local parser_config = require"nvim-treesitter.parsers".get_parser_configs()
   parser_config.markdown.filetype_to_parsername = "octo"
 end
 
