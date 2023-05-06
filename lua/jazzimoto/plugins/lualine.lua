@@ -1,10 +1,10 @@
 local M = {
-  "nvim-lualine/lualine.nvim",
+  'nvim-lualine/lualine.nvim',
   enabled = false,
 }
 
 local function clock()
-  return " " .. os.date("%H:%M")
+  return ' ' .. os.date '%H:%M'
 end
 
 function M.config()
@@ -12,32 +12,32 @@ function M.config()
     return
   end
 
-  require("lualine").setup({
+  require('lualine').setup {
     options = {
-      theme = "auto",
-      section_separators = { left = "", right = "" },
-      component_separators = { left = "", right = "" },
+      theme = 'auto',
+      section_separators = { left = '', right = '' },
+      component_separators = { left = '', right = '' },
       icons_enabled = true,
       globalstatus = true,
-      disabled_filetypes = { statusline = { "dashboard" } },
+      disabled_filetypes = { statusline = { 'dashboard' } },
     },
     sections = {
-      lualine_a = { { "mode", separator = { left = "" } } },
-      lualine_b = { "branch" },
+      lualine_a = { { 'mode', separator = { left = '' } } },
+      lualine_b = { 'branch' },
       lualine_c = {
-        { "diagnostics", sources = { "nvim_diagnostic" } },
-        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+        { 'diagnostics', sources = { 'nvim_diagnostic' } },
+        { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
+        { 'filename', path = 1, symbols = { modified = '  ', readonly = '', unnamed = '' } },
       },
       lualine_x = {
         {
-          require("lazy.status").updates,
-          cond = require("lazy.status").has_updates,
-          color = { fg = "#ff9e64" },
+          require('lazy.status').updates,
+          cond = require('lazy.status').has_updates,
+          color = { fg = '#ff9e64' },
         },
       },
-      lualine_y = { "location" },
-      lualine_z = { { clock, separator = { right = "" } } },
+      lualine_y = { 'location' },
+      lualine_z = { { clock, separator = { right = '' } } },
     },
     inactive_sections = {
       lualine_a = {},
@@ -47,8 +47,8 @@ function M.config()
       lualine_y = {},
       lualine_z = {},
     },
-    extensions = { "nvim-tree" },
-  })
+    extensions = { 'nvim-tree' },
+  }
 end
 
 return M

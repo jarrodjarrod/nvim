@@ -13,13 +13,13 @@ return {
     -- Snippets
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
-    "jose-elias-alvarez/typescript.nvim",
+    'jose-elias-alvarez/typescript.nvim',
   },
   config = function()
-    local cmp = require('cmp')
-    local luasnip = require('luasnip')
+    local cmp = require 'cmp'
+    local luasnip = require 'luasnip'
 
-    luasnip.config.setup({})
+    luasnip.config.setup {}
 
     cmp.setup {
       snippet = {
@@ -28,23 +28,23 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert {
-        ["<c-e>"] = vim.NIL,
+        ['<c-e>'] = vim.NIL,
         ['<tab>'] = vim.NIL,
         ['<s-tab>'] = vim.NIL,
-        ["<c-i>"] = cmp.mapping.complete(),
-        ["<c-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<c-f>"] = cmp.mapping.scroll_docs(4),
-        ["<c-n>"] = cmp.mapping.select_next_item(),
-        ["<c-p>"] = cmp.mapping.select_prev_item(),
-        ["<c-y>"] = cmp.mapping.confirm({ select = true }),
-        ['<cr>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true, }),
+        ['<c-i>'] = cmp.mapping.complete(),
+        ['<c-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<c-f>'] = cmp.mapping.scroll_docs(4),
+        ['<c-n>'] = cmp.mapping.select_next_item(),
+        ['<c-p>'] = cmp.mapping.select_prev_item(),
+        ['<c-y>'] = cmp.mapping.confirm { select = true },
+        ['<cr>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
       },
       sources = {
         { name = 'path' },
         { name = 'nvim_lsp' },
-        { name = 'buffer',  keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
       },
     }
-  end
+  end,
 }

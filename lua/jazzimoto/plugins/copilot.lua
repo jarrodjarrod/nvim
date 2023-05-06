@@ -1,7 +1,7 @@
 return {
-  "github/copilot.vim",
+  'github/copilot.vim',
   enabled = true,
-  cmd = "Copilot",
+  cmd = 'Copilot',
   -- "zbirenbaum/copilot.lua",
   -- build = ":Copilot auth",
   -- opts = {
