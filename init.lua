@@ -1,5 +1,5 @@
 if vim.g.vscode then
-  require 'vsvim'
+    require('vsvim')
 else
-  require 'jazzimoto'
+    require('jazzimoto')
 end

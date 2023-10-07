@@ -19,9 +19,21 @@ vim.keymap.set('n', '<leader>l', 'a<Space><Esc>')
 vim.keymap.set('n', '<leader>h', 'i<Space><Esc>')
 vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
 
-vim.keymap.set('n', '<leader>pf', "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>")
+vim.keymap.set(
+    'n',
+    '<leader>pf',
+    "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>"
+)
 vim.keymap.set('n', 'gr', "<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>")
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>e', "<cmd>call VSCodeCall('workbench.view.explorer')<CR>", {
-  noremap = true,
-})
-vim.keymap.set('n', '<C-p>', "<cmd>call VSCodeCall('workbench.action.quickOpen')<CR>")
+vim.keymap.set(
+    { 'n', 'v', 'i' },
+    '<leader>e',
+    "<cmd>call VSCodeCall('workbench.view.explorer')<CR>",
+    { noremap = true }
+)
+vim.keymap.set('n', '<c-s-n>', "<cmd>call VSCodeCall('search.action.focusNextSearchResult')<CR>")
+vim.keymap.set(
+    'n',
+    '<c-s-p>',
+    "<cmd>call VSCodeCall('search.action.focusPreviousSearchResult')<CR>"
+)

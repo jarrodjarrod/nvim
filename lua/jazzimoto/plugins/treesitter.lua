@@ -1,182 +1,196 @@
 local M = {
-  'nvim-treesitter/nvim-treesitter',
-  dev = false,
-  build = ':TSUpdate',
-  event = 'BufReadPost',
-  dependencies = {
-    'RRethy/nvim-treesitter-textsubjects',
-    'mfussenegger/nvim-treehopper',
-    'nvim-treesitter/nvim-treesitter-refactor',
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    'windwp/nvim-ts-autotag',
-    { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == 'table' then
-        vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx' })
-      end
-    end,
-  },
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    -- event = 'BufReadPost',
+    dependencies = {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        'nvim-treesitter/nvim-treesitter-refactor',
+        'RRethy/nvim-treesitter-textsubjects',
+        'mfussenegger/nvim-treehopper',
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        'windwp/nvim-ts-autotag',
+        { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
+        opts = function(_, opts)
+            if type(opts.ensure_installed) == 'table' then
+                vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx' })
+            end
+        end,
+    },
 }
 
 function M.init()
-  vim.cmd [[
+    vim.cmd([[
     omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
     xnoremap <silent> m :lua require('tsht').nodes()<CR>
-  ]]
+  ]])
 end
 
 function M.config()
-  require('nvim-treesitter.configs').setup {
-    ensure_installed = {
-      'bash',
-      'c',
-      'cmake',
-      'diff',
-      'fish',
-      'gitignore',
-      'go',
-      'graphql',
-      'help',
-      'html',
-      'http',
-      'javascript',
-      'jsdoc',
-      'json',
-      'jsonc',
-      'lua',
-      'markdown',
-      'markdown_inline',
-      'python',
-      'query',
-      'regex',
-      'rust',
-      'scss',
-      'sql',
-      'toml',
-      'tsx',
-      'typescript',
-      'vhs',
-      'vim',
-      'vue',
-      'yaml',
-    },
-    sync_install = false,
-    auto_install = false,
-    highlight = { enable = true },
-    indent = { enable = false },
-    context_commentstring = { enable = true, enable_autocmd = false },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = '<c-n>',
-        node_incremental = '<c-n>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<c-r>',
-      },
-    },
-    refactor = {
-      smart_rename = {
-        enable = true,
-        client = {
-          smart_rename = '<leader>cr',
+    require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+            'bash',
+            'c',
+            'css',
+            'cmake',
+            'diff',
+            'fish',
+            'gitignore',
+            'go',
+            'graphql',
+            'help',
+            'html',
+            'http',
+            'javascript',
+            'jsdoc',
+            'json',
+            'jsonc',
+            'lua',
+            'markdown',
+            'markdown_inline',
+            'python',
+            'query',
+            'regex',
+            'rust',
+            'scss',
+            'sql',
+            'toml',
+            'tsx',
+            'typescript',
+            'vhs',
+            'vim',
+            'vimdoc',
+            'vue',
+            'yaml',
         },
-      },
-      navigation = {
-        enable = true,
-        keymaps = {
-          goto_definition = 'gd',
-          list_definitions = 'gnD',
-          list_definitions_toc = 'gO',
-          goto_next_usage = '<a-*>',
-          goto_previous_usage = '<a-#>',
+        sync_install = false,
+        auto_install = false,
+        highlight = {
+            enable = true,
         },
-      },
-    },
-    query_linter = {
-      enable = true,
-      use_virtual_text = true,
-      lint_events = { 'BufWrite', 'CursorHold' },
-    },
-    textsubjects = {
-      enable = true,
-      keymaps = {
-        ['.'] = 'textsubjects-smart',
-        [';'] = 'textsubjects-container-outer',
-      },
-    },
-    playground = {
-      enable = true,
-      disable = {},
-      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-      persist_queries = true, -- Whether the query persists across vim sessions
-      keybindings = {
-        toggle_query_editor = 'o',
-        toggle_hl_groups = 'i',
-        toggle_injected_languages = 't',
-        toggle_anonymous_nodes = 'a',
-        toggle_language_display = 'I',
-        focus_language = 'f',
-        unfocus_language = 'F',
-        update = 'R',
-        goto_node = '<cr>',
-        show_help = '?',
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
+        indent = {
+            enable = true,
         },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']f'] = '@function.outer',
-          [']c'] = '@class.outer',
+        context_commentstring = {
+            enable = true,
+            enable_autocmd = false,
         },
-        goto_next_end = {
-          [']F'] = '@function.outer',
-          [']C'] = '@class.outer',
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = '<c-n>',
+                node_incremental = '<c-n>',
+                scope_incremental = '<c-s>',
+                node_decremental = '<c-r>',
+            },
         },
-        goto_previous_start = {
-          ['[f'] = '@function.outer',
-          ['[c'] = '@class.outer',
+        refactor = {
+            highlight_current_scope = { enable = false },
+            highlight_definitions = {
+                enable = true,
+                clear_on_cursor_move = true,
+            },
+            smart_rename = {
+                enable = true,
+                client = {
+                    smart_rename = '<leader>cr',
+                },
+            },
+            navigation = {
+                enable = true,
+                keymaps = {
+                    goto_definition = 'gnd',
+                    list_definitions = 'gnD',
+                    list_definitions_toc = 'gO',
+                    goto_next_usage = '<a-*>',
+                    goto_previous_usage = '<a-#>',
+                },
+            },
         },
-        goto_previous_end = {
-          ['[F'] = '@function.outer',
-          ['[C'] = '@class.outer',
+        query_linter = {
+            enable = true,
+            use_virtual_text = true,
+            lint_events = { 'BufWrite', 'CursorHold' },
         },
-      },
-      swap = {
-        enable = false,
-        swap_next = {
-          ['<leader>ta'] = '@parameter.inner',
+        textsubjects = {
+            enable = true,
+            keymaps = {
+                ['.'] = 'textsubjects-smart',
+                [';'] = 'textsubjects-container-outer',
+            },
         },
-        swap_previous = {
-          ['<leader>tA'] = '@parameter.inner',
+        playground = {
+            enable = true,
+            disable = {},
+            updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+            persist_queries = true, -- Whether the query persists across vim sessions
+            keybindings = {
+                toggle_query_editor = 'o',
+                toggle_hl_groups = 'i',
+                toggle_injected_languages = 't',
+                toggle_anonymous_nodes = 'a',
+                toggle_language_display = 'I',
+                focus_language = 'f',
+                unfocus_language = 'F',
+                update = 'R',
+                goto_node = '<cr>',
+                show_help = '?',
+            },
         },
-      },
-      lsp_interop = {
-        enable = false,
-        peek_definition_code = {
-          ['gD'] = '@function.outer',
+        textobjects = {
+            select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                    -- You can use the capture groups defined in textobjects.scm
+                    ['af'] = '@function.outer',
+                    ['if'] = '@function.inner',
+                    ['ac'] = '@class.outer',
+                    ['ic'] = '@class.inner',
+                },
+            },
+            move = {
+                enable = true,
+                set_jumps = true, -- whether to set jumps in the jumplist
+                goto_next_start = {
+                    [']f'] = '@function.outer',
+                    [']c'] = '@class.outer',
+                },
+                goto_next_end = {
+                    [']F'] = '@function.outer',
+                    [']C'] = '@class.outer',
+                },
+                goto_previous_start = {
+                    ['[f'] = '@function.outer',
+                    ['[c'] = '@class.outer',
+                },
+                goto_previous_end = {
+                    ['[F'] = '@function.outer',
+                    ['[C'] = '@class.outer',
+                },
+            },
+            swap = {
+                enable = false,
+                swap_next = {
+                    ['<leader>ta'] = '@parameter.inner',
+                },
+                swap_previous = {
+                    ['<leader>tA'] = '@parameter.inner',
+                },
+            },
+            lsp_interop = {
+                enable = false,
+                peek_definition_code = {
+                    ['gD'] = '@function.outer',
+                },
+            },
         },
-      },
-    },
-    autotag = {
-      enable = true,
-    },
-  }
+        autotag = {
+            enable = true,
+        },
+    })
 
-  local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-  parser_config.markdown.filetype_to_parsername = 'octo'
+    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+    parser_config.markdown.filetype_to_parsername = 'octo'
 end
 
 return M

@@ -1,2 +1,2 @@
-require 'jazzimoto.config'
-require 'jazzimoto.lazy'
+require('jazzimoto.config')
+require('jazzimoto.lazy')

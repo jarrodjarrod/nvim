@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+vim.g.netrw_localrmdir = 'rm -r'
 vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
 vim.o.autowrite = true -- Enable auto write
 vim.o.backup = false
@@ -32,7 +33,7 @@ vim.o.relativenumber = true -- Relative line numbers
 vim.o.scrolloff = 8 -- Lines of context
 vim.o.sessionoptions = 'buffers,curdir,tabpages,winsize'
 vim.o.shiftround = true -- Round indent
-vim.o.shiftwidth = 2 -- Size of an indent
+vim.o.shiftwidth = 4 -- Size of an indent
 vim.o.showmode = false -- Dont show mode since we have a statusline
 vim.o.sidescrolloff = 8 -- Columns of context
 vim.o.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
@@ -45,14 +46,16 @@ vim.o.swapfile = false
 vim.o.tabstop = 2 -- Number of spaces tabs count for
 vim.o.termguicolors = true -- True color support
 vim.o.timeoutlen = 300
-vim.o.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 50
 vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
+vim.o.wildoptions = 'fuzzy'
 vim.o.winminwidth = 5 -- Minimum window width
 vim.o.wrap = false -- Disable line wrap
-vim.opt.isfname:append '@-@'
-vim.opt.shortmess:append { W = true, I = true, c = true }
-vim.opt.shortmess:append 'c'
-vim.diagnostic.config { virtual_text = true }
+vim.o.textwidth = 100
+vim.opt.isfname:append('@-@')
+vim.opt.shortmess:append({ W = true, I = true, c = true })
+vim.opt.shortmess:append('c')
+vim.diagnostic.config({ virtual_text = true })
