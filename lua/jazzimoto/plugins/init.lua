@@ -4,6 +4,11 @@ return {
     'mbbill/undotree',
     'nvim-treesitter/nvim-treesitter-context',
     'ThePrimeagen/vim-be-good',
+
+    -- Git related plugins
+    'tpope/vim-fugitive',
+    'tpope/vim-rhubarb',
+
     'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
     { 'jose-elias-alvarez/typescript.nvim', opts = {} },
@@ -30,22 +35,22 @@ return {
             on_attach = function(bufnr)
                 vim.keymap.set(
                     'n',
-                    '<leader>gp',
-                    require('gitsigns').prev_hunk,
-                    { buffer = bufnr, desc = '[G]o to [P]revious Hunk' }
-                )
-                vim.keymap.set(
-                    'n',
-                    '<leader>gn',
-                    require('gitsigns').next_hunk,
-                    { buffer = bufnr, desc = '[G]o to [N]ext Hunk' }
-                )
-                vim.keymap.set(
-                    'n',
                     '<leader>ph',
                     require('gitsigns').preview_hunk,
-                    { buffer = bufnr, desc = '[P]review [H]unk' }
+                    { buffer = bufnr, desc = 'Preview hunk' }
                 )
+                -- don't override the built-in and fugitive keymaps
+                local gs = package.loaded.gitsigns
+                vim.keymap.set({ 'n', 'v' }, ']c', function()
+                    if vim.wo.diff then return ']c' end
+                    vim.schedule(function() gs.next_hunk() end)
+                    return '<Ignore>'
+                end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
+                vim.keymap.set({ 'n', 'v' }, '[c', function()
+                    if vim.wo.diff then return '[c' end
+                    vim.schedule(function() gs.prev_hunk() end)
+                    return '<Ignore>'
+                end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
             end,
         },
     },
@@ -68,18 +73,43 @@ return {
     },
 
     {
-        'ellisonleao/gruvbox.nvim',
-        -- init = function()
-        --   vim.o.background = 'dark' -- or "light" for light mode
-        --   vim.cmd [[colorscheme gruvbox]]
-        -- end,
+        'sainnhe/gruvbox-material',
+        name = 'gruvbox-material',
         lazy = false,
+        priority = 1000,
+        config = function()
+            vim.g.gruvbox_material_better_performance = 1
+            -- Fonts
+            vim.g.gruvbox_material_disable_italic_comment = 0
+            vim.g.gruvbox_material_enable_italic = 0
+            vim.g.gruvbox_material_enable_bold = 1
+            vim.g.gruvbox_material_transparent_background = 1
+            -- Themes
+            vim.g.gruvbox_material_foreground = 'mix'
+            vim.g.gruvbox_material_background = 'hard'
+            vim.g.gruvbox_material_ui_contrast = 'high'
+            vim.g.gruvbox_material_float_style = 'dim'
+            vim.g.gruvbox_material_cursor = 'red'
+            vim.g.gruvbox_material_menu_selection_background = 'yellow'
+            vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
+
+            vim.cmd([[colorscheme "gruvbox-material"]])
+        end,
     },
 
     {
         'rose-pine/neovim',
         lazy = false,
-        config = function() require('rose-pine').setup({ disable_background = true, disable_float_background = true }) end,
+        config = function()
+            require('rose-pine').setup({
+                --- @usage 'auto'|'main'|'moon'|'dawn'
+                variant = 'auto',
+                --- @usage 'main'|'moon'|'dawn'
+                dark_variant = 'moon',
+                disable_background = true,
+                disable_float_background = true,
+            })
+        end,
     },
 
     {
@@ -132,7 +162,12 @@ return {
             vim.keymap.set('n', '<leader>8', function() require('harpoon.ui').nav_file(8) end)
             vim.keymap.set('n', '<leader>9', function() require('harpoon.ui').nav_file(9) end)
         end,
-        opts = { menu = { width = vim.api.nvim_win_get_width(0) - 4 } },
+        opts = {
+            menu = {
+                width = vim.api.nvim_win_get_width(0) - 4,
+                height = vim.api.nvim_win_get_height(0) - 10,
+            },
+        },
     },
 
     {

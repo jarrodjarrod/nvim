@@ -1,3 +1,3 @@
-require('jazzimoto.config.options')
-require('jazzimoto.config.autocmds')
+require('vsvim.options')
 require('vsvim.keymaps')
+require('vsvim.autocmds')

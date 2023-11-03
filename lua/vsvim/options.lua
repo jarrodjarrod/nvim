@@ -8,8 +8,7 @@ vim.o.autowrite = true -- Enable auto write
 vim.o.backup = false
 vim.o.clipboard = 'unnamedplus' -- Sync with system clipboard
 vim.o.cmdheight = 1
-vim.o.textwidth = 80
-vim.o.colorcolumn = '+0'
+vim.o.colorcolumn = '100'
 vim.o.completeopt = 'menuone,noselect'
 vim.o.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.o.cursorline = true -- Enable highlighting of the current line
@@ -31,12 +30,12 @@ vim.o.number = true -- Print line number
 vim.o.pumblend = 10 -- Popup blend
 vim.o.pumheight = 10 -- Maximum number of entries in a popup
 vim.o.relativenumber = true -- Relative line numbers
-vim.o.scrolloff = 4 -- Lines of context
+vim.o.scrolloff = 8 -- Lines of context
 vim.o.sessionoptions = 'buffers,curdir,tabpages,winsize'
 vim.o.shiftround = true -- Round indent
 vim.o.shiftwidth = 4 -- Size of an indent
 vim.o.showmode = false -- Dont show mode since we have a statusline
-vim.o.sidescrolloff = 4 -- Columns of context
+vim.o.sidescrolloff = 8 -- Columns of context
 vim.o.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 vim.o.smartcase = true -- Don't ignore case with capitals
 vim.o.smartindent = true -- Insert indents automatically
@@ -55,6 +54,7 @@ vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.o.wildoptions = 'fuzzy'
 vim.o.winminwidth = 5 -- Minimum window width
 vim.o.wrap = false -- Disable line wrap
+vim.o.textwidth = 100
 vim.opt.isfname:append('@-@')
 vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.opt.shortmess:append('c')

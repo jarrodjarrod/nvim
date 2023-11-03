@@ -8,8 +8,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         vim.cmd('EslintFixAll')
     end,
 })
-
-vim.api.nvim_create_autocmd('ColorScheme', {
-    pattern = '*',
-    callback = function() vim.cmd([[highlight FloatBorder guifg=#ff00ff]]) end,
-})
