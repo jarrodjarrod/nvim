@@ -3,5 +3,5 @@ return {
     enabled = false,
     event = 'InsertEnter',
     build = ':Copilot auth',
-    config = function() require('jazzimoto.plugins.configs.copilot-lua') end,
+    config = function() require('plugins.configs.copilot-lua') end,
 }

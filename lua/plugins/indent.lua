@@ -7,5 +7,5 @@ return {
     },
     name = 'mini.indentscope',
     event = 'VeryLazy',
-    config = function() require('jazzimoto.plugins.configs.indent') end,
+    config = function() require('plugins.configs.indent') end,
 }

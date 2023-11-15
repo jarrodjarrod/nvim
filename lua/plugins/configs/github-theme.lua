@@ -45,12 +45,9 @@ local specs = {
 -- names of the highlight groups that will be overridden. The value is a table
 -- with the following keys: fg, bg, style, sp, link
 local groups = {
-    -- As with specs and palettes, a specific style's value will be used
-    -- over the `all` value.
-    github_dark_tritanopia = {
-        -- TelescopeNormal = { bg = colours.bg },
-        -- ColorColumn = { bg = colours.bg_dark },
-    },
+    -- As with specs and palettes, a specific style's value will be used over
+    -- the `all` value.
+    github_dark_tritanopia = {},
     github_dark = {
         PmenuSel = { bg = '#73daca', fg = 'bg0' },
         TelescopeNormal = { bg = 'bg1' },
@@ -63,15 +60,8 @@ require('github-theme').setup({
     groups = groups,
     options = {
         transparent = true,
-        styles = {
-            comments = 'italic',
-            functions = 'bold',
-        },
-        inverse = {
-            match_paren = true,
-            visual = true,
-            search = true,
-        },
+        styles = { comments = 'italic', functions = 'bold' },
+        inverse = { match_paren = true, visual = false, search = true },
     },
 })
 

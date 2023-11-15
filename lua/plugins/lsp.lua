@@ -7,5 +7,5 @@ return {
         'folke/neodev.nvim',
         'hrsh7th/cmp-nvim-lsp',
     },
-    config = function() require('jazzimoto.plugins.configs.lsp-config') end,
+    config = function() require('plugins.configs.lsp-config') end,
 }

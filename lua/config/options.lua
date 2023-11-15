@@ -1,14 +1,15 @@
+-- vim.o.signcolumn = 'number'
+vim.diagnostic.config({ virtual_text = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-vim.g.netrw_localrmdir = 'rm -r'
 vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
+vim.g.netrw_banner = 0
+vim.g.netrw_localrmdir = 'rm -r'
+vim.g.netrw_winsize = 25
 vim.o.autowrite = true -- Enable auto write
 vim.o.backup = false
 vim.o.clipboard = 'unnamedplus' -- Sync with system clipboard
 vim.o.cmdheight = 1
-vim.o.textwidth = 80
 vim.o.colorcolumn = '+0'
 vim.o.completeopt = 'menuone,noselect'
 vim.o.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -38,7 +39,6 @@ vim.o.shiftwidth = 4 -- Size of an indent
 vim.o.showmode = false -- Dont show mode since we have a statusline
 vim.o.sidescrolloff = 4 -- Columns of context
 vim.o.signcolumn = 'yes:2' -- Always show the signcolumn, otherwise it would shift the text each time
--- vim.o.signcolumn = 'number'
 vim.o.smartcase = true -- Don't ignore case with capitals
 vim.o.smartindent = true -- Insert indents automatically
 vim.o.softtabstop = 2
@@ -47,6 +47,7 @@ vim.o.splitright = true -- force all vertical splits to go to the right of curre
 vim.o.swapfile = false
 vim.o.tabstop = 2 -- Number of spaces tabs count for
 vim.o.termguicolors = true -- True color support
+vim.o.textwidth = 80
 vim.o.timeoutlen = 300
 vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.o.undofile = true
@@ -57,6 +58,5 @@ vim.o.wildoptions = 'fuzzy'
 vim.o.winminwidth = 5 -- Minimum window width
 vim.o.wrap = false -- Disable line wrap
 vim.opt.isfname:append('@-@')
-vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.opt.shortmess:append('c')
-vim.diagnostic.config({ virtual_text = true })
+vim.opt.shortmess:append({ W = true, I = true, c = true })

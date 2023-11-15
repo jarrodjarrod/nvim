@@ -11,7 +11,7 @@ return {
         enabled = true,
         lazy = false,
         priority = 1000,
-        config = function() require('jazzimoto.plugins.configs.github-theme') end,
+        config = function() require('plugins.configs.github-theme') end,
     },
 
     {
