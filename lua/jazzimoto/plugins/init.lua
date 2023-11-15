@@ -1,19 +1,21 @@
+---@diagnostic disable: missing-fields
 return {
     'nvim-lua/plenary.nvim',
     'nvim-lua/popup.nvim',
     'mbbill/undotree',
-    'nvim-treesitter/nvim-treesitter-context',
     'ThePrimeagen/vim-be-good',
+    'nvim-tree/nvim-web-devicons',
+    'nvim-treesitter/nvim-treesitter-context',
 
     -- Git related plugins
     'tpope/vim-fugitive',
     'tpope/vim-rhubarb',
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
 
-    'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+    { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
     { 'jose-elias-alvarez/typescript.nvim', opts = {} },
-    { 'windwp/nvim-autopairs', opts = {} },
-    { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
+    { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
 
     {
         'kdheepak/lazygit.nvim',
@@ -21,7 +23,6 @@ return {
     },
 
     {
-        -- Adds git releated signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
         opts = {
             -- See `:help gitsigns.txt`
@@ -57,6 +58,7 @@ return {
 
     {
         'numToStr/Comment.nvim',
+        event = 'VeryLazy',
         config = function()
             require('Comment').setup({
                 pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
@@ -70,81 +72,6 @@ return {
         --       refer to the README for telescope-fzf-native for more instructions.
         build = 'make',
         cond = function() return vim.fn.executable('make') == 1 end,
-    },
-
-    {
-        'sainnhe/gruvbox-material',
-        name = 'gruvbox-material',
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.g.gruvbox_material_better_performance = 1
-            -- Fonts
-            vim.g.gruvbox_material_disable_italic_comment = 0
-            vim.g.gruvbox_material_enable_italic = 0
-            vim.g.gruvbox_material_enable_bold = 1
-            vim.g.gruvbox_material_transparent_background = 1
-            -- Themes
-            vim.g.gruvbox_material_foreground = 'mix'
-            vim.g.gruvbox_material_background = 'hard'
-            vim.g.gruvbox_material_ui_contrast = 'high'
-            vim.g.gruvbox_material_float_style = 'dim'
-            vim.g.gruvbox_material_cursor = 'red'
-            vim.g.gruvbox_material_menu_selection_background = 'yellow'
-            vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
-
-            vim.cmd([[colorscheme "gruvbox-material"]])
-        end,
-    },
-
-    {
-        'rose-pine/neovim',
-        lazy = false,
-        config = function()
-            require('rose-pine').setup({
-                --- @usage 'auto'|'main'|'moon'|'dawn'
-                variant = 'auto',
-                --- @usage 'main'|'moon'|'dawn'
-                dark_variant = 'moon',
-                disable_background = true,
-                disable_float_background = true,
-            })
-        end,
-    },
-
-    {
-        -- Theme inspired by Atom
-        'navarasu/onedark.nvim',
-        -- init = function() vim.cmd([[colorscheme onedark]]) end,
-        lazy = false,
-    },
-
-    {
-        'folke/tokyonight.nvim',
-        lazy = false,
-        config = function()
-            require('tokyonight').setup({
-                style = 'moon',
-                styles = {
-                    -- Style to be applied to different syntax groups
-                    -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = true },
-                    keywords = { italic = true },
-                    functions = {},
-                    variables = {},
-                    -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = 'dark', -- style for sidebars, see below
-                    floats = 'transparent', -- style for floating windows
-                },
-                transparent = true,
-                on_colors = function(colors) colors.error = '#ff0000' end,
-                on_highlights = function(hl, c) hl.IncSearch = { bg = '#ff66ff', fg = '#66ff66' } end,
-            })
-
-            -- vim.cmd([[colorscheme tokyonight-moon]])
-            -- vim.api.nvim_set_hl(0, 'Cursor', { bg = '#ff007c', fg = '#ffffff' })
-            -- vim.o.guicursor = 'a:block-Cursor,i:ver25'
-        end,
     },
 
     {

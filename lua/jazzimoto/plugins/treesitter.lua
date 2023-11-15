@@ -1,15 +1,16 @@
+---@diagnostic disable: missing-fields
+
 local M = {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     event = 'BufReadPost',
     dependencies = {
         'JoosepAlviste/nvim-ts-context-commentstring',
-        'nvim-treesitter/nvim-treesitter-refactor',
         'RRethy/nvim-treesitter-textsubjects',
         'mfussenegger/nvim-treehopper',
+        'nvim-treesitter/nvim-treesitter-refactor',
         'nvim-treesitter/nvim-treesitter-textobjects',
         'windwp/nvim-ts-autotag',
-        { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
         opts = function(_, opts)
             if type(opts.ensure_installed) == 'table' then
                 vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx' })
@@ -30,13 +31,11 @@ function M.config()
         ensure_installed = {
             'bash',
             'c',
-            'css',
             'cmake',
+            'css',
             'diff',
-            'fish',
             'gitignore',
             'go',
-            'graphql',
             'help',
             'html',
             'http',
@@ -63,7 +62,7 @@ function M.config()
             'yaml',
         },
         sync_install = false,
-        auto_install = false,
+        auto_install = true,
         highlight = {
             enable = true,
         },
@@ -118,34 +117,18 @@ function M.config()
                 [';'] = 'textsubjects-container-outer',
             },
         },
-        playground = {
-            enable = true,
-            disable = {},
-            updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-            persist_queries = true, -- Whether the query persists across vim sessions
-            keybindings = {
-                toggle_query_editor = 'o',
-                toggle_hl_groups = 'i',
-                toggle_injected_languages = 't',
-                toggle_anonymous_nodes = 'a',
-                toggle_language_display = 'I',
-                focus_language = 'f',
-                unfocus_language = 'F',
-                update = 'R',
-                goto_node = '<cr>',
-                show_help = '?',
-            },
-        },
         textobjects = {
             select = {
                 enable = true,
                 lookahead = true,
                 keymaps = {
                     -- You can use the capture groups defined in textobjects.scm
-                    ['af'] = '@function.outer',
-                    ['if'] = '@function.inner',
-                    ['ac'] = '@class.outer',
-                    ['ic'] = '@class.inner',
+                    ['is'] = { query = '@statement.inner', desc = 'statement' },
+                    ['as'] = { query = '@statement.outer', desc = 'statement' },
+                    ['ic'] = { query = '@class.inner', desc = 'class' },
+                    ['ac'] = { query = '@class.outer', desc = 'class' },
+                    ['af'] = { query = '@function.inner', desc = 'function' },
+                    ['if'] = { query = '@function.outer', desc = 'function' },
                 },
             },
             move = {
