@@ -35,7 +35,7 @@ return {
                 },
                 transparent = true,
                 on_colors = function(colors) colors.error = '#ff0000' end,
-                on_highlights = function(hl, c) hl.IncSearch = { bg = '#ff66ff', fg = '#66ff66' } end,
+                on_highlights = function(hl, _) hl.IncSearch = { bg = '#ff66ff', fg = '#66ff66' } end,
             })
         end,
     },
