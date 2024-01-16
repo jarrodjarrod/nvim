@@ -17,7 +17,11 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             python = { 'black' },
-            javascript = { { 'prettierd', 'prettier' } },
+            javascript = { { 'prettier', 'prettierd' } },
+            javascriptreact = { { 'prettier', 'prettierd' } },
+            typescript = { { 'prettier', 'prettierd' } },
+            typescriptreact = { { 'prettier', 'prettierd' } },
+            ['*'] = { 'codespell' },
         },
         -- Set up format-on-save
         format_on_save = { timeout_ms = 500, lsp_fallback = true },

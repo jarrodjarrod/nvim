@@ -1,4 +1,4 @@
-local cs = 'github_dark_tritanopia'
+local cs = 'github_dark'
 
 function Colour(colour)
     if not pcall(vim.cmd.colorscheme, colour) then vim.cmd.colorscheme('rose-pine-moon') end
@@ -10,5 +10,4 @@ function Colour(colour)
     -- vim.api.nvim_set_hl(0, 'IncSearch', { bg = '#ff66ff', fg = '#66ff66' })
 end
 
--- if not vim.g.vscode then Colour(cs) end
-Colour(cs)
+if not vim.g.vscode then Colour(cs) end

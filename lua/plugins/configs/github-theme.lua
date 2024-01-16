@@ -15,7 +15,7 @@ local options = {
         types = 'underdotted',
         constants = 'standout',
     },
-    inverse = { match_paren = true, visual = false, search = true },
+    inverse = { match_paren = false, visual = false, search = false },
     darken = { floats = false },
 }
 

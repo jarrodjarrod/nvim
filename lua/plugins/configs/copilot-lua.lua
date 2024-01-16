@@ -12,7 +12,7 @@ require('copilot').setup({
         layout = { position = 'right', ratio = 0.4 },
     },
     suggestion = {
-        enabled = false,
+        enabled = true,
         auto_trigger = true,
         debounce = 75,
         keymap = {
@@ -41,7 +41,7 @@ require('copilot').setup({
 
 vim.keymap.set(
     'n',
-    '<leader>tc',
+    '<leader>ta',
     require('copilot.suggestion').toggle_auto_trigger,
-    { noremap = true, silent = true }
+    { noremap = true, desc = 'Copilot toggle_auto_trigger' }
 )
