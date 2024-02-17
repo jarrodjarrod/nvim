@@ -14,7 +14,6 @@ return {
     'tpope/vim-sleuth',
 
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
-    { 'jose-elias-alvarez/typescript.nvim', opts = {} },
     { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
 
     {

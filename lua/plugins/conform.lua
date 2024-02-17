@@ -1,11 +1,12 @@
 return {
     'stevearc/conform.nvim',
+    enabled = true,
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
         {
             -- Customize or remove this keymap to your liking
-            '<leader>f',
+            '<leader>lf',
             function() require('conform').format({ async = true, lsp_fallback = true }) end,
             mode = '',
             desc = 'format buffer',
@@ -17,14 +18,15 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             python = { 'black' },
-            javascript = { { 'prettier', 'prettierd' } },
-            javascriptreact = { { 'prettier', 'prettierd' } },
             typescript = { { 'prettier', 'prettierd' } },
-            typescriptreact = { { 'prettier', 'prettierd' } },
+            -- javascript = { { 'eslint', 'prettier', 'prettierd' } },
+            -- javascriptreact = { { 'eslint', 'prettier', 'prettierd' } },
+            -- typescript = { { 'eslint', 'prettier', 'prettierd' } },
+            -- typescriptreact = { { 'eslint', 'prettier', 'prettierd' } },
             ['*'] = { 'codespell' },
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 500, lsp_fallback = true },
+        -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
         -- Customize formatters
         formatters = { shfmt = { prepend_args = { '-i', '2' } } },
     },

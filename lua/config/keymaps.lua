@@ -47,6 +47,10 @@ M.nvim = function()
 end
 
 M.vscode = function()
+    print('vscode-neovim')
+
+    local vscode = require('vscode-neovim')
+
     vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
     vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true })
     vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv")
@@ -66,29 +70,39 @@ M.vscode = function()
     vim.keymap.set('n', '<leader>O', 'O<Esc>0"_D', { noremap = true })
     vim.keymap.set('n', '<leader>l', 'a<Space><Esc>')
     vim.keymap.set('n', '<leader>h', 'i<Space><Esc>')
-    vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
-
-    vim.keymap.set(
-        'n',
-        '<leader>pf',
-        "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>"
-    )
-    vim.keymap.set('n', 'gr', "<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>")
+    -- vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
+    -- vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
+    -- vim.keymap.set(
+    --     'n',
+    --     '<leader>f',
+    --     "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>"
+    -- )
     vim.keymap.set(
         { 'n', 'v', 'i' },
         '<leader>e',
-        "<cmd>call VSCodeCall('workbench.view.explorer')<CR>",
+        "<CMD>lua require('vscode-neovim').call('workbench.view.explorer')<CR>",
         { noremap = true }
     )
+    -- vim.keymap.set(
+    --     'n',
+    --     '<c-s-n>',
+    --     "<cmd>call VSCodeCall('search.action.focusNextSearchResult')<CR>"
+    -- )
+    -- vim.keymap.set(
+    --     'n',
+    --     '<c-s-p>',
+    --     "<cmd>call VSCodeCall('search.action.focusPreviousSearchResult')<CR>"
+    -- ),
+    -- vim.keymap.set('n', 'gr', "<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>")
     vim.keymap.set(
         'n',
-        '<c-s-n>',
-        "<cmd>call VSCodeCall('search.action.focusNextSearchResult')<CR>"
+        'gr',
+        "<CMD>lua require('vscode-neovim').call('editor.action.referenceSearch.trigger')<CR>"
     )
     vim.keymap.set(
         'n',
-        '<c-s-p>',
-        "<cmd>call VSCodeCall('search.action.focusPreviousSearchResult')<CR>"
+        '<C-h>',
+        "<CMD>lua require('vscode-neovim').call('editor.action.showHover')<CR>"
     )
 end
 

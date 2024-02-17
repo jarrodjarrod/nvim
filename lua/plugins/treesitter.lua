@@ -11,11 +11,11 @@ local M = {
         'nvim-treesitter/nvim-treesitter-refactor',
         'nvim-treesitter/nvim-treesitter-textobjects',
         'windwp/nvim-ts-autotag',
-        opts = function(_, opts)
-            if type(opts.ensure_installed) == 'table' then
-                vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx' })
-            end
-        end,
+        -- opts = function(_, opts)
+        --     if type(opts.ensure_installed) == 'table' then
+        --         vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx' })
+        --     end
+        -- end,
     },
 }
 
@@ -36,7 +36,7 @@ function M.config()
             'diff',
             'gitignore',
             'go',
-            'help',
+            -- 'help',
             'html',
             'http',
             'javascript',

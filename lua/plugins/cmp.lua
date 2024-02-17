@@ -15,13 +15,11 @@ return {
         -- Snippets
         'L3MON4D3/LuaSnip',
         'rafamadriz/friendly-snippets',
-        'jose-elias-alvarez/typescript.nvim',
     },
     config = function()
         local cmp = require('cmp')
         local luasnip = require('luasnip')
         require('luasnip.loaders.from_vscode').lazy_load()
-
         luasnip.config.setup({})
 
         cmp.setup({
@@ -38,16 +36,19 @@ return {
                 ['<c-n>'] = cmp.mapping.select_next_item(),
                 ['<c-p>'] = cmp.mapping.select_prev_item(),
                 ['<c-y>'] = cmp.mapping.confirm({ select = true }),
-                ['<cr>'] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                }),
+                ['<CR>'] = cmp.mapping(
+                    cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
+                    { 'i', 'c' }
+                ),
             }),
             sources = {
                 { name = 'path' },
                 { name = 'nvim_lsp' },
                 { name = 'buffer', keyword_length = 3 },
                 { name = 'luasnip', keyword_length = 2 },
+            },
+            completion = {
+                completeopt = 'menu,menuone,noinsert',
             },
         })
 

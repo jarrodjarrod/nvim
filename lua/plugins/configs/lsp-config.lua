@@ -1,5 +1,5 @@
 -- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
+-- This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
     local map = function(keys, func, desc, mode)
         if desc then desc = 'LSP: ' .. desc end
@@ -36,12 +36,17 @@ local servers = {
     -- clangd = {},
     -- gopls = {},
     -- yamlls = {}
-    -- tsserver = {},
+    tsserver = {},
     rust_analyzer = {},
     cssls = {},
     eslint = {},
     html = {},
-    jsonls = { json = { format = { keepLines = true } } },
+    jsonls = {
+        json = {
+            format = { enable = false },
+            validate = { enable = true },
+        },
+    },
     lua_ls = { Lua = { format = { enable = false } } },
     pyright = {},
 }
