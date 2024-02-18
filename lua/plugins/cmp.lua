@@ -36,10 +36,7 @@ return {
                 ['<c-n>'] = cmp.mapping.select_next_item(),
                 ['<c-p>'] = cmp.mapping.select_prev_item(),
                 ['<c-y>'] = cmp.mapping.confirm({ select = true }),
-                ['<CR>'] = cmp.mapping(
-                    cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
-                    { 'i', 'c' }
-                ),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
             }),
             sources = {
                 { name = 'path' },
@@ -48,7 +45,7 @@ return {
                 { name = 'luasnip', keyword_length = 2 },
             },
             completion = {
-                completeopt = 'menu,menuone,noinsert',
+                completeopt = 'menu,menuone,noselect',
             },
         })
 
