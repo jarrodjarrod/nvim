@@ -49,8 +49,6 @@ end
 M.vscode = function()
     print('vscode-neovim')
 
-    local vscode = require('vscode-neovim')
-
     vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
     vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true })
     vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv")
@@ -68,8 +66,6 @@ M.vscode = function()
 
     vim.keymap.set('n', '<leader>o', 'o<Esc>0"_D', { noremap = true })
     vim.keymap.set('n', '<leader>O', 'O<Esc>0"_D', { noremap = true })
-    vim.keymap.set('n', '<leader>l', 'a<Space><Esc>')
-    vim.keymap.set('n', '<leader>h', 'i<Space><Esc>')
     -- vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
     -- vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
     -- vim.keymap.set(
