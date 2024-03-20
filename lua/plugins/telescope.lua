@@ -4,14 +4,17 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
-        'nvim-telescope/telescope-fzf-native.nvim',
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        },
         'nvim-telescope/telescope-symbols.nvim',
         'nvim-telescope/telescope-z.nvim',
         { 'nvim-telescope/telescope-live-grep-args.nvim', version = '^1.0.0' },
     },
     keys = {
         { '<c-p>', '<cmd>Telescope git_files<cr>' },
-        { '<leader><leader>', '<cmd>Telescope live_grep_args<cr>', desc = 'live grep args' },
+        { '<leader>ga', '<cmd>Telescope live_grep_args<cr>', desc = 'live grep args' },
         { '<leader>D', '<cmd>Telescope lsp_type_definitions<cr>', desc = 'type definition' },
         { '<leader>ch', '<cmd>Telescope command_history<cr>', desc = 'command history' },
         { '<leader>ds', '<cmd>Telescope lsp_document_symbols<cr>', desc = 'document symbols' },
@@ -37,7 +40,7 @@ return {
         { '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'man pages' },
         { '<leader>sa', '<cmd>Telescope autocommands<cr>', desc = 'Auto Commands' },
         { '<leader>sa', '<cmd>Telescope autocommands<cr>', desc = 'auto commands' },
-        { '<leader>sb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'buffer' },
+        { '<leader><leader>', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'buffer' },
         { '<leader>sc', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
         { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document diagnostics' },
         { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'key maps' },
@@ -116,6 +119,20 @@ return {
             },
             pickers = {
                 lsp_references = { fname_width = 100 },
+                git_status = {
+                    mappings = {
+                        i = {
+                            ['<Tab>'] = function(bufnr)
+                                actions.toggle_selection(bufnr)
+                                actions.move_selection_previous(bufnr)
+                            end,
+                            ['<S-Tab>'] = function(bufnr)
+                                actions.toggle_selection(bufnr)
+                                actions.move_selection_next(bufnr)
+                            end,
+                        },
+                    },
+                },
             },
             extensions = {
                 live_grep_args = {

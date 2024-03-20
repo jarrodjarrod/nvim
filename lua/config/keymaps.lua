@@ -37,13 +37,19 @@ M.nvim = function()
     vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
     vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
     vim.keymap.set('x', '<leader>p', '"_dP')
-    vim.keymap.set({ 'n', 'i', 'v', 'x' }, '<c-s>', '<cmd>w<cr>')
+    -- vim.keymap.set({ 'n', 'i', 'v', 'x' }, '<c-s>', '<cmd>w<cr>')
     -- vim.cmd.tnoremap('<Esc>', '<c-\\><c-n>')
     -- Diagnostic keymaps
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
     vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic' })
     vim.keymap.set('n', 'gq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+    vim.keymap.set(
+        'n',
+        '<leader>cp',
+        '<cmd>let @+=expand("%")<cr>',
+        { desc = 'Copy file path to clipboard' }
+    )
 end
 
 M.vscode = function()
@@ -66,17 +72,25 @@ M.vscode = function()
 
     vim.keymap.set('n', '<leader>o', 'o<Esc>0"_D', { noremap = true })
     vim.keymap.set('n', '<leader>O', 'O<Esc>0"_D', { noremap = true })
+
+    vim.keymap.set('n', '<leader>ss', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>')
     -- vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
     -- vim.keymap.set('n', '<leader>lf', "<cmd>call VSCodeNotify('editor.action.formatDocument')<CR>")
     -- vim.keymap.set(
     --     'n',
-    --     '<leader>f',
-    --     "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>"
+    --     '<leader>fw',
+    --     "<CMD>lua require('vscode-neovim').call('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>"
     -- )
     vim.keymap.set(
         { 'n', 'v', 'i' },
         '<leader>e',
         "<CMD>lua require('vscode-neovim').call('workbench.view.explorer')<CR>",
+        { noremap = true }
+    )
+    vim.keymap.set(
+        { 'n' },
+        '<leader>lf',
+        "<CMD>lua require('vscode-neovim').call('editor.action.formatDocument')<CR>",
         { noremap = true }
     )
     -- vim.keymap.set(
@@ -89,7 +103,6 @@ M.vscode = function()
     --     '<c-s-p>',
     --     "<cmd>call VSCodeCall('search.action.focusPreviousSearchResult')<CR>"
     -- ),
-    -- vim.keymap.set('n', 'gr', "<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>")
     vim.keymap.set(
         'n',
         'gr',

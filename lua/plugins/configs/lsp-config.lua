@@ -43,7 +43,8 @@ local servers = {
     html = {},
     jsonls = {
         json = {
-            format = { enable = false },
+            schemas = require('schemastore').json.schemas(),
+            format = { enable = true, insertFinalNewline = false },
             validate = { enable = true },
         },
     },

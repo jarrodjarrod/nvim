@@ -27,3 +27,6 @@ require('lazy').setup('plugins', {
         -- version = "*", -- enable this to try installing the latest stable versions of plugins
     },
 })
+
+vim.keymap.set('n', '<leader>lz', require('lazy').home, { noremap = true })
+vim.keymap.set('n', '<leader>gf', '<CMD>Git<CR><C-w>L', { noremap = true })

@@ -19,12 +19,12 @@ local M = {
     },
 }
 
-function M.init()
-    vim.cmd([[
-    omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
-    xnoremap <silent> m :lua require('tsht').nodes()<CR>
-  ]])
-end
+-- function M.init()
+--     vim.cmd([[
+--     omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+--     xnoremap <silent> m :lua require('tsht').nodes()<CR>
+--   ]])
+-- end
 
 function M.config()
     require('nvim-treesitter.configs').setup({
@@ -36,12 +36,12 @@ function M.config()
             'diff',
             'gitignore',
             'go',
-            -- 'help',
             'html',
             'http',
             'javascript',
             'jsdoc',
             'json',
+            'json5',
             'jsonc',
             'lua',
             'markdown',
@@ -60,6 +60,7 @@ function M.config()
             'vimdoc',
             'vue',
             'yaml',
+            -- 'help',
         },
         sync_install = false,
         auto_install = true,
@@ -68,45 +69,10 @@ function M.config()
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = '<c-n>',
-                node_incremental = '<c-n>',
+                init_selection = '<c-l>',
+                node_incremental = '<c-l>',
+                node_decremental = '<c-h>',
                 scope_incremental = '<c-s>',
-                node_decremental = '<c-r>',
-            },
-        },
-        refactor = {
-            highlight_current_scope = { enable = false },
-            highlight_definitions = {
-                enable = true,
-                clear_on_cursor_move = true,
-            },
-            smart_rename = {
-                enable = true,
-                client = {
-                    smart_rename = '<leader>cr',
-                },
-            },
-            navigation = {
-                enable = true,
-                keymaps = {
-                    goto_definition = 'gnd',
-                    list_definitions = 'gnD',
-                    list_definitions_toc = 'gO',
-                    goto_next_usage = '<a-*>',
-                    goto_previous_usage = '<a-#>',
-                },
-            },
-        },
-        query_linter = {
-            enable = true,
-            use_virtual_text = true,
-            lint_events = { 'BufWrite', 'CursorHold' },
-        },
-        textsubjects = {
-            enable = true,
-            keymaps = {
-                ['.'] = 'textsubjects-smart',
-                [';'] = 'textsubjects-container-outer',
             },
         },
         textobjects = {
@@ -115,12 +81,12 @@ function M.config()
                 lookahead = true,
                 keymaps = {
                     -- You can use the capture groups defined in textobjects.scm
-                    ['is'] = { query = '@statement.inner', desc = 'statement' },
-                    ['as'] = { query = '@statement.outer', desc = 'statement' },
-                    ['ic'] = { query = '@class.inner', desc = 'class' },
-                    ['ac'] = { query = '@class.outer', desc = 'class' },
-                    ['af'] = { query = '@function.inner', desc = 'function' },
-                    ['if'] = { query = '@function.outer', desc = 'function' },
+                    ['aa'] = '@parameter.outer',
+                    ['ia'] = '@parameter.inner',
+                    ['af'] = '@function.outer',
+                    ['if'] = '@function.inner',
+                    ['ac'] = '@class.outer',
+                    ['ic'] = '@class.inner',
                 },
             },
             move = {
@@ -157,6 +123,42 @@ function M.config()
                 peek_definition_code = {
                     ['gD'] = '@function.outer',
                 },
+            },
+        },
+        refactor = {
+            highlight_current_scope = { enable = false },
+            highlight_definitions = {
+                enable = true,
+                clear_on_cursor_move = true,
+            },
+            smart_rename = {
+                enable = true,
+                client = {
+                    smart_rename = '<leader>cr',
+                },
+            },
+            navigation = {
+                enable = true,
+                keymaps = {
+                    goto_definition = 'gnd',
+                    list_definitions = 'gnD',
+                    list_definitions_toc = 'gO',
+                    goto_next_usage = '<a-*>',
+                    goto_previous_usage = '<a-#>',
+                },
+            },
+        },
+        query_linter = {
+            enable = true,
+            use_virtual_text = true,
+            lint_events = { 'BufWrite', 'CursorHold' },
+        },
+        textsubjects = {
+            enable = true,
+            keymaps = {
+                ['.'] = 'textsubjects-smart',
+                [';'] = 'textsubjects-container-outer',
+                ['i;'] = 'textsubjects-container-inner',
             },
         },
         autotag = {
