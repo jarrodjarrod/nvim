@@ -26,7 +26,7 @@ return {
             -- javascriptreact = { { 'eslint', 'prettier', 'prettierd' } },
             -- typescript = { { 'eslint', 'prettier', 'prettierd' } },
             -- typescriptreact = { { 'eslint', 'prettier', 'prettierd' } },
-            ['*'] = { 'codespell' },
+            -- ['*'] = { 'codespell' },
         },
         -- Set up format-on-save
         format_on_save = { timeout_ms = 500, lsp_fallback = true },

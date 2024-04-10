@@ -50,6 +50,7 @@ local servers = {
     },
     lua_ls = { Lua = { format = { enable = false } } },
     pyright = {},
+    bashls = {},
 }
 
 -- Setup neovim lua configuration
