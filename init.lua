@@ -29,4 +29,3 @@ require('lazy').setup('plugins', {
 })
 
 vim.keymap.set('n', '<leader>lz', require('lazy').home, { noremap = true })
-vim.keymap.set('n', '<leader>gf', '<CMD>Git<CR><C-w>L', { noremap = true })

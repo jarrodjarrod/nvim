@@ -5,7 +5,6 @@ return {
         name = 'catppuccin',
         priority = 1000,
     },
-
     {
         'projekt0n/github-nvim-theme',
         enabled = true,
@@ -13,7 +12,6 @@ return {
         priority = 1000,
         config = function() require('plugins.configs.github-theme') end,
     },
-
     {
         'folke/tokyonight.nvim',
         enabled = true,
@@ -39,7 +37,6 @@ return {
             })
         end,
     },
-
     {
         'sainnhe/gruvbox-material',
         name = 'gruvbox-material',
@@ -68,7 +65,6 @@ return {
             vim.g.gruvbox_material_ui_contrast = 'high'
         end,
     },
-
     {
         'rose-pine/neovim',
         enabled = true,
@@ -84,5 +80,17 @@ return {
                 disable_float_background = true,
             })
         end,
+    },
+    {
+        'EdenEast/nightfox.nvim',
+        enabled = true,
+        lazy = false,
+        priority = 1000,
+    },
+    {
+        'dracula/vim',
+        enabled = true,
+        lazy = false,
+        priority = 1000,
     },
 }

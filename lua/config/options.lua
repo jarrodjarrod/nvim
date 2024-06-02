@@ -62,3 +62,5 @@ vim.o.wrap = false -- Disable line wrap
 vim.opt.isfname:append('@-@')
 vim.opt.shortmess:append('c')
 vim.opt.shortmess:append({ W = true, I = true, c = true })
+vim.opt.guicursor =
+    'n-v-c-sm:block,i-ci-ve:ver30,r-cr-o:hor20,a:blinkwait500-blinkoff400-blinkon400-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'

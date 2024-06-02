@@ -1,6 +1,6 @@
 local M = {
     'nvim-lualine/lualine.nvim',
-    enabled = false,
+    enabled = true,
 }
 
 local function clock() return ' ' .. os.date('%H:%M') end

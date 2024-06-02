@@ -7,12 +7,21 @@ return {
     'nvim-tree/nvim-web-devicons',
     'nvim-treesitter/nvim-treesitter-context',
     -- Git related plugins
-    'tpope/vim-fugitive',
+    {
+        'tpope/vim-fugitive',
+        config = function()
+            vim.keymap.set('n', '<leader>gf', '<CMD>Git<CR><C-w>L', { noremap = true })
+        end,
+    },
     'tpope/vim-rhubarb',
     -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
-    { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
+    {
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        config = true,
+    },
     {
         'kdheepak/lazygit.nvim',
         config = function() vim.keymap.set('n', '<leader>z', '<cmd>LazyGit<cr>') end,
@@ -20,7 +29,6 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         opts = {
-            -- See `:help gitsigns.txt`
             signs = {
                 add = { text = '+' },
                 change = { text = '~' },
@@ -29,14 +37,20 @@ return {
                 changedelete = { text = '~' },
             },
             on_attach = function(bufnr)
+                local gs = require('gitsigns')
                 vim.keymap.set(
                     'n',
-                    '<leader>ph',
-                    require('gitsigns').preview_hunk,
+                    '<leader>hp',
+                    gs.preview_hunk,
                     { buffer = bufnr, desc = 'Preview hunk' }
                 )
+                vim.keymap.set(
+                    'n',
+                    '<leader>hr',
+                    gs.reset_hunk,
+                    { buffer = bufnr, desc = 'Reset hunk' }
+                )
                 -- don't override the built-in and fugitive keymaps
-                local gs = package.loaded.gitsigns
                 vim.keymap.set({ 'n', 'v' }, ']c', function()
                     if vim.wo.diff then return ']c' end
                     vim.schedule(function() gs.next_hunk() end)
@@ -120,6 +134,14 @@ return {
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {},
+    },
+    {
+        'stevearc/oil.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('oil').setup()
+            vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+        end,
     },
     -- "b0o/SchemaStore.nvim",
     -- "MunifTanjim/nui.nvim",

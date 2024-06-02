@@ -13,7 +13,7 @@ return {
         { 'nvim-telescope/telescope-live-grep-args.nvim', version = '^1.0.0' },
     },
     keys = {
-        { '<c-p>', '<cmd>Telescope git_files<cr>' },
+        { '<leader>sg', '<cmd>Telescope git_files<cr>' },
         { '<leader>ga', '<cmd>Telescope live_grep_args<cr>', desc = 'live grep args' },
         { '<leader>D', '<cmd>Telescope lsp_type_definitions<cr>', desc = 'type definition' },
         { '<leader>ch', '<cmd>Telescope command_history<cr>', desc = 'command history' },

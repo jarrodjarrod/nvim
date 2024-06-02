@@ -8,4 +8,4 @@ function Colour(colour)
     -- vim.api.nvim_set_hl(0, 'IncSearch', { bg = '#ff66ff', fg = '#66ff66' })
 end
 
-if not vim.g.vscode then Colour('rose-pine') end
+if not vim.g.vscode then Colour('dracula') end

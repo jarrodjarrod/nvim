@@ -1,5 +1,5 @@
 return {
     'github/copilot.vim',
-    enabled = false,
+    enabled = true,
     event = 'InsertEnter',
 }
