@@ -5,9 +5,8 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
         {
-            -- Customize or remove this keymap to your liking
             '<leader>lf',
-            function() require('conform').format({ async = true, lsp_fallback = true }) end,
+            function() require('conform').format({ async = true }) end,
             mode = '',
             desc = 'format buffer',
         },
@@ -18,25 +17,18 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             python = { 'black' },
-            typescript = { { 'prettierd' } },
-            typescriptreact = { { 'prettierd' } },
-            html = { { 'prettierd' } },
-            json = { { 'jsonls' } },
-            -- javascript = { { 'eslint', 'prettier', 'prettierd' } },
-            -- javascriptreact = { { 'eslint', 'prettier', 'prettierd' } },
-            -- typescript = { { 'eslint', 'prettier', 'prettierd' } },
-            -- typescriptreact = { { 'eslint', 'prettier', 'prettierd' } },
+            typescript = { 'prettierd', 'prettier', stop_after_first = true },
+            typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+            html = { 'prettierd', 'prettier', stop_after_first = true },
+            json = { 'jsonls', 'deno_fmt' },
             -- ['*'] = { 'codespell' },
         },
-        -- Set up format-on-save
-        format_on_save = { timeout_ms = 500, lsp_fallback = true },
-        -- Customize formatters
+        format_on_save = {
+            timeout_ms = 1000,
+            lsp_format = 'fallback',
+        },
         formatters = {
             shfmt = { prepend_args = { '-i', '2' } },
         },
     },
-    init = function()
-        -- If you want the formatexpr, here is the place to set it
-        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
 }

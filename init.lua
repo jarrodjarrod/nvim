@@ -29,3 +29,8 @@ require('lazy').setup('plugins', {
 })
 
 vim.keymap.set('n', '<leader>lz', require('lazy').home, { noremap = true })
+vim.api.nvim_create_user_command(
+    'Browse',
+    function(opts) vim.fn.system({ 'open', opts.fargs[1] }) end,
+    { nargs = 1 }
+)

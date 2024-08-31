@@ -5,7 +5,12 @@ return {
     'mbbill/undotree',
     'ThePrimeagen/vim-be-good',
     'nvim-tree/nvim-web-devicons',
-    'nvim-treesitter/nvim-treesitter-context',
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        opts = {
+            max_lines = 4,
+        },
+    },
     -- Git related plugins
     {
         'tpope/vim-fugitive',
@@ -14,13 +19,17 @@ return {
         end,
     },
     'tpope/vim-rhubarb',
-    -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
     {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
-        config = true,
+        config = function()
+            require('nvim-autopairs').setup({})
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local cmp = require('cmp')
+            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+        end,
     },
     {
         'kdheepak/lazygit.nvim',
@@ -38,18 +47,12 @@ return {
             },
             on_attach = function(bufnr)
                 local gs = require('gitsigns')
-                vim.keymap.set(
-                    'n',
-                    '<leader>hp',
-                    gs.preview_hunk,
-                    { buffer = bufnr, desc = 'Preview hunk' }
-                )
-                vim.keymap.set(
-                    'n',
-                    '<leader>hr',
-                    gs.reset_hunk,
-                    { buffer = bufnr, desc = 'Reset hunk' }
-                )
+                -- stylua: ignore start
+                vim.keymap.set('n', '<leader>hp', gs.preview_hunk, { buffer = bufnr, desc = 'Preview hunk' })
+                vim.keymap.set('n', '<leader>hr', gs.reset_hunk, { buffer = bufnr, desc = 'Reset hunk' })
+                vim.keymap.set('n', '<leader>hb', gs.blame_line, { desc = 'Blame line' })
+                vim.keymap.set('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle show blame line' })
+                -- stylua: ignore end
                 -- don't override the built-in and fugitive keymaps
                 vim.keymap.set({ 'n', 'v' }, ']c', function()
                     if vim.wo.diff then return ']c' end

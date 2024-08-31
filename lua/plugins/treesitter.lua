@@ -2,6 +2,7 @@
 
 local M = {
     'nvim-treesitter/nvim-treesitter',
+    enabled = true,
     build = ':TSUpdate',
     event = 'BufReadPost',
     dependencies = {
@@ -10,21 +11,8 @@ local M = {
         'mfussenegger/nvim-treehopper',
         'nvim-treesitter/nvim-treesitter-refactor',
         'nvim-treesitter/nvim-treesitter-textobjects',
-        'windwp/nvim-ts-autotag',
-        -- opts = function(_, opts)
-        --     if type(opts.ensure_installed) == 'table' then
-        --         vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx' })
-        --     end
-        -- end,
     },
 }
-
--- function M.init()
---     vim.cmd([[
---     omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
---     xnoremap <silent> m :lua require('tsht').nodes()<CR>
---   ]])
--- end
 
 function M.config()
     require('nvim-treesitter.configs').setup({
@@ -60,7 +48,6 @@ function M.config()
             'vimdoc',
             'vue',
             'yaml',
-            -- 'help',
         },
         sync_install = false,
         auto_install = true,
@@ -160,9 +147,6 @@ function M.config()
                 [';'] = 'textsubjects-container-outer',
                 ['i;'] = 'textsubjects-container-inner',
             },
-        },
-        autotag = {
-            enable = true,
         },
     })
 
