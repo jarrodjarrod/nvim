@@ -53,17 +53,23 @@ return {
                 vim.keymap.set('n', '<leader>hb', gs.blame_line, { desc = 'Blame line' })
                 vim.keymap.set('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle show blame line' })
                 -- stylua: ignore end
+
                 -- don't override the built-in and fugitive keymaps
                 vim.keymap.set({ 'n', 'v' }, ']c', function()
-                    if vim.wo.diff then return ']c' end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
+                    if vim.wo.diff then
+                        vim.cmd.normal({ ']c', bang = true })
+                    else
+                        gs.nav_hunk('next')
+                    end
+                end, { buffer = bufnr, desc = 'Jump to next hunk' })
+
                 vim.keymap.set({ 'n', 'v' }, '[c', function()
-                    if vim.wo.diff then return '[c' end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
+                    if vim.wo.diff then
+                        vim.cmd.normal({ ']c', bang = true })
+                    else
+                        gs.nav_hunk('prev')
+                    end
+                end, { buffer = bufnr, desc = 'Jump to previous hunk' })
             end,
         },
     },
@@ -146,6 +152,7 @@ return {
             vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
         end,
     },
+    { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } },
     -- "b0o/SchemaStore.nvim",
     -- "MunifTanjim/nui.nvim",
     -- "windwp/nvim-spectre",

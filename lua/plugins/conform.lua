@@ -17,11 +17,10 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             python = { 'black' },
-            typescript = { 'prettierd', 'prettier', stop_after_first = true },
-            typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-            html = { 'prettierd', 'prettier', stop_after_first = true },
-            json = { 'jsonls', 'deno_fmt' },
-            -- ['*'] = { 'codespell' },
+            typescript = { 'prettierd' },
+            typescriptreact = { 'prettierd' },
+            html = { 'prettierd' },
+            json = { lsp_format = 'fallback' },
         },
         format_on_save = {
             timeout_ms = 1000,
