@@ -13,7 +13,6 @@ local options = {
         comments = 'italic',
         functions = 'bold',
         types = 'underdotted',
-        constants = 'standout',
     },
     inverse = { match_paren = false, visual = false, search = false },
     darken = { floats = false },

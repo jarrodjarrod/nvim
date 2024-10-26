@@ -93,4 +93,10 @@ return {
         lazy = false,
         priority = 1000,
     },
+    {
+        'oxfist/night-owl.nvim',
+        enabled = true,
+        lazy = false,
+        priority = 1000,
+    },
 }

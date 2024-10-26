@@ -53,7 +53,7 @@ return {
         },
         { 'gd', '<cmd>Telescope lsp_definitions<cr>', desc = 'go to definition' },
         { 'gr', '<cmd>Telescope lsp_references<cr>', desc = 'go to references' },
-        { '<leader>cs', '<cmd>Telescope colorscheme<cr>', desc = 'colorscheme' },
+        { '<leader>pc', '<cmd>Telescope colorscheme<cr>', desc = 'colorscheme' },
         -- Folke LazyVim keymaps that would be cool to get working
         -- {
         --     '<leader>sw',

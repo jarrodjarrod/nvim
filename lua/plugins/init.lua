@@ -95,6 +95,8 @@ return {
         init = function()
             vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file)
             vim.keymap.set('n', '<leader>hh', require('harpoon.ui').toggle_quick_menu)
+            vim.keymap.set('n', '<leader>gn', require('harpoon.ui').nav_next)
+            vim.keymap.set('n', '<leader>gp', require('harpoon.ui').nav_prev)
             vim.keymap.set('n', '<leader>1', function() require('harpoon.ui').nav_file(1) end)
             vim.keymap.set('n', '<leader>2', function() require('harpoon.ui').nav_file(2) end)
             vim.keymap.set('n', '<leader>3', function() require('harpoon.ui').nav_file(3) end)
@@ -147,12 +149,51 @@ return {
     {
         'stevearc/oil.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            require('oil').setup()
-            vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-        end,
+        opts = {
+            view_options = {
+                show_hidden = true,
+            },
+        },
     },
     { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } },
+    {
+        'folke/trouble.nvim',
+        opts = {},
+        cmd = 'Trouble',
+        keys = {
+            {
+                '<leader>xx',
+                '<cmd>Trouble diagnostics toggle<cr>',
+                desc = 'Diagnostics (Trouble)',
+            },
+            {
+                '<leader>xX',
+                '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+                desc = 'Buffer Diagnostics (Trouble)',
+            },
+            {
+                '<leader>cs',
+                '<cmd>Trouble symbols toggle focus=false<cr>',
+                desc = 'Symbols (Trouble)',
+            },
+            {
+                '<leader>cl',
+                '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+                desc = 'LSP Definitions / references / ... (Trouble)',
+            },
+            {
+                '<leader>xL',
+                '<cmd>Trouble loclist toggle<cr>',
+                desc = 'Location List (Trouble)',
+            },
+            {
+                '<leader>xQ',
+                '<cmd>Trouble qflist toggle<cr>',
+                desc = 'Quickfix List (Trouble)',
+            },
+        },
+    },
+    -- { 'dmmulroy/tsc.nvim', opts = {} },
     -- "b0o/SchemaStore.nvim",
     -- "MunifTanjim/nui.nvim",
     -- "windwp/nvim-spectre",
