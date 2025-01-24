@@ -6,7 +6,7 @@ return {
         'nvim-telescope/telescope-file-browser.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
         },
         'nvim-telescope/telescope-symbols.nvim',
         'nvim-telescope/telescope-z.nvim',
@@ -54,6 +54,22 @@ return {
         { 'gd', '<cmd>Telescope lsp_definitions<cr>', desc = 'go to definition' },
         { 'gr', '<cmd>Telescope lsp_references<cr>', desc = 'go to references' },
         { '<leader>pc', '<cmd>Telescope colorscheme<cr>', desc = 'colorscheme' },
+        {
+            '<leader>lw',
+            function()
+                require('telescope-live-grep-args.shortcuts').grep_word_under_cursor({
+                    postfix = ' -F --iglob ',
+                })
+            end,
+        },
+        {
+            '<leader>lv',
+            function()
+                require('telescope-live-grep-args.shortcuts').grep_visual_selection({
+                    postfix = ' -F --iglob ',
+                })
+            end,
+        },
         -- Folke LazyVim keymaps that would be cool to get working
         -- {
         --     '<leader>sw',
@@ -79,24 +95,8 @@ return {
         -- },
     },
     config = function()
-        require('telescope').load_extension('fzf')
-        require('telescope').load_extension('file_browser')
-        require('telescope').load_extension('live_grep_args')
-
         local actions = require('telescope.actions')
-        local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
         local live_grep_args_actions = require('telescope-live-grep-args.actions')
-
-        vim.keymap.set(
-            'n',
-            '<leader>lw',
-            function() live_grep_args_shortcuts.grep_word_under_cursor({ postfix = ' -F --iglob ' }) end
-        )
-        vim.keymap.set(
-            'v',
-            '<leader>lv',
-            function() live_grep_args_shortcuts.grep_visual_selection({ postfix = ' -F --iglob ' }) end
-        )
 
         require('telescope').setup({
             defaults = {
@@ -144,5 +144,9 @@ return {
                 },
             },
         })
+
+        require('telescope').load_extension('fzf')
+        require('telescope').load_extension('file_browser')
+        require('telescope').load_extension('live_grep_args')
     end,
 }

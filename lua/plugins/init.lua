@@ -125,6 +125,7 @@ return {
     },
     {
         'stevearc/aerial.nvim',
+        enabled = false,
         opts = {
             on_attach = function() vim.keymap.set('n', '<leader>aa', '<cmd>AerialToggle!<CR>') end,
             layout = {
@@ -193,10 +194,11 @@ return {
             },
         },
     },
-    -- { 'dmmulroy/tsc.nvim', opts = {} },
+    { 'dmmulroy/tsc.nvim', opts = {} },
     -- "b0o/SchemaStore.nvim",
     -- "MunifTanjim/nui.nvim",
     -- "windwp/nvim-spectre",
     -- "rlch/github-notifications.nvim",
     -- "folke/twilight.nvim",
+    { 'oxfist/night-owl.nvim' },
 }

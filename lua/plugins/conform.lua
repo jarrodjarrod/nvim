@@ -11,16 +11,14 @@ return {
             desc = 'format buffer',
         },
     },
-    -- Everything in opts will be passed to setup()
     opts = {
-        -- Define your formatters
         formatters_by_ft = {
+            html = { 'prettierd' },
+            json = { lsp_format = 'fallback' },
             lua = { 'stylua' },
             python = { 'black' },
             typescript = { 'prettierd' },
             typescriptreact = { 'prettierd' },
-            html = { 'prettierd' },
-            json = { lsp_format = 'fallback' },
         },
         format_on_save = {
             timeout_ms = 1000,

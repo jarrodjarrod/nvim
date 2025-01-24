@@ -64,3 +64,10 @@ vim.opt.shortmess:append('c')
 vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.opt.guicursor =
     'n-v-c-sm:block,i-ci-ve:ver30,r-cr-o:hor20,a:blinkwait500-blinkoff400-blinkon400-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
+vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
+vim.o.foldcolumn = '1'
+vim.o.foldenable = true
+vim.o.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldmethod = 'expr'
