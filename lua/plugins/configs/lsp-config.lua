@@ -40,6 +40,7 @@ local ensure_installed = {
     'bashls',
     'denols',
     'typos_lsp',
+    'gopls'
 }
 
 require('neodev').setup()
